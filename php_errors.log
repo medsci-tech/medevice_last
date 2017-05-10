@@ -1,0 +1,2 @@
+[10-May-2017 08:31:47 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'D:\phpStudy\php70n\ext\php_imagick.dll' - %1 不是有效的 Win32 应用程序。
+ in Unknown on line 0
