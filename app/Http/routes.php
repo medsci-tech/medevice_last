@@ -46,6 +46,9 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/collection-list', 'PersonalController@collectionList');
         Route::get('/attention-list', 'PersonalController@attentionList');
     });
+    Route::group(['prefix' => 'apply', 'namespace' => 'Apply'], function () {
+        Route::get('/', 'ApplyController@index');
+    });
 
     Route::group(['prefix' => 'article', 'namespace' => 'Article'], function () {
         Route::get('/', 'ArticleController@index');
