@@ -43,16 +43,28 @@ class ShopController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
+ * @param Request $request
+ * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+ */
     public function detail(Request $request)
     {
 //        $customer = \Helper::getCustomer();
 //        $product = Product::find($request->input('id'));
         return view('shop.detail', [
-           // 'product' => $product,
-           // 'collect' => ProductCollection::where('product_id', $request->input('id'))->where('customer_id', $customer->id)->get()->toArray() ? true : false
+            // 'product' => $product,
+            // 'collect' => ProductCollection::where('product_id', $request->input('id'))->where('customer_id', $customer->id)->get()->toArray() ? true : false
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function info(Request $request)
+    {
+        return view('shop.info', [
+            // 'product' => $product,
+            // 'collect' => ProductCollection::where('product_id', $request->input('id'))->where('customer_id', $customer->id)->get()->toArray() ? true : false
         ]);
     }
 
