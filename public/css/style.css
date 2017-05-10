@@ -1,0 +1,399 @@
+body {
+    font-family: "Helvetica Neue",Helvetica,STHeiTi,sans-serif;
+    font-size: 14px;
+    color: #333;
+    background-color: #f8f8f8;
+    -webkit-user-select: none;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0;
+}
+.m-top{
+    margin-top: 8px;
+}
+.m-bottom{
+    margin-bottom: 8px;
+}
+.text-danger {
+    color: #FF0B33;
+}
+/*****头部导航*****/
+.head-bar {
+    padding: 0;
+    margin: 0;
+    height: 44px;
+    line-height: 44px;
+    background: #01a4e4;
+    display: -webkit-box;
+    border-bottom: 1px solid #d6dcdf;
+}
+
+.head-bar .head-title {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    font-size: 15px;
+    color: #fff;
+    text-align: center;
+}
+
+.head-bar .goback {
+    background: url(../images/goback.png) no-repeat 10px center;
+    -webkit-background-size: 15px;
+    background-size: 15px;
+    display: block;
+    height: 44px;
+    width: 44px;
+}
+
+.head-bar .home {
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 5px;
+    border-radius: 3px;
+    font-size: 13px;
+    color: #999;
+}
+
+.head-bar .bar-left {
+    position: absolute;
+}
+
+.head-bar .bar-right {
+    position: absolute;
+    right: 10px;
+}
+/*****商品详情*****/
+.product-details{
+    padding-bottom: 50px;
+}
+.product-details .product-slide{
+    position: relative;
+    text-align: center;
+    background: #fff;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+.product-details .product-slide img{
+    max-width: 230px;
+    max-height: 100%;
+}
+.product-details .product-info{
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+}
+.product-details .product-info .product-title{
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+.product-details .product-info .product-prices{
+    color: #999;
+    padding-bottom: 5px;
+}
+.product-details .product-info .product-prices em{
+    font-size: 16px;
+    color: #FF0B33;
+}
+.product-details .product-cell{
+    border-bottom: 1px solid #dfdfdf;
+    border-top: 1px solid #dfdfdf;
+    padding: 0 10px;
+    background: #fff;
+}
+.product-details .product-cell a{
+    padding: 10px 0;
+    display: block;
+    position: relative;
+    color: #333;
+}
+.product-details .product-cell a:after{
+    content: " ";
+    display: inline-block;
+    height: 6px;
+    width: 6px;
+    border-width: 2px 2px 0 0;
+    border-color: #C8C8CD;
+    border-style: solid;
+    -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    position: relative;
+    top: -2px;
+    position: absolute;
+    top: 50%;
+    margin-top: -4px;
+    right: 2px;
+}
+.product-details .product-details-box{
+    border-top: 1px solid #dfdfdf;
+    background: #fff;
+}
+.product-details .product-details-box .details-nav{
+    width: 100%;
+    background: #f5f5f5;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    height: 44px;
+    line-height: 44px;
+}
+.product-details .product-details-box .details-nav li{
+    text-align: center;
+    display: block;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    font-size: 14px;
+    color: #5e5e5e;
+    display: inline-block;
+}
+.product-details .product-details-box .details-nav li.active{
+    color: #01a4e4;
+    border-bottom: 2px solid #01a4e4;
+}
+.product-details .product-details-box .details-cont{
+    padding: 10px 0;
+}
+.product-details .product-details-box .details-cont .product-imgs img{
+    width: 100%;
+    margin: 0 auto;
+    vertical-align: middle;
+}
+.product-details .product-details-box .details-cont .details-list{
+    padding: 0 10px;
+    display: none;
+}
+.product-details .product-details-box .details-cont .details-list.tab-content-active{
+    display: block;
+}
+.fixed-details-nav{
+    position: fixed;
+    top: 0;
+    z-index: 999;
+}
+.together-footer{
+    position: fixed;
+    width: 100%;
+    z-index: 99999;
+    bottom: 0;
+}
+.together-footer .together-box{
+    width: 100%;
+}
+.together-footer .together-box .together{
+    float: left;
+    height: 40px;
+    text-align: center;
+    position: relative;
+    box-sizing: border-box;
+    width: 80%;
+    background: #01a4e4;
+    line-height:40px;
+    color: #fff;
+}
+.together-footer .together-box .mark{
+    float: left;
+    height: 40px;
+    text-align: center;
+    position: relative;
+    box-sizing: border-box;
+    width: 20%;
+    background: #fff;
+    font-size: 13px;
+    color: #5e5e5e
+}
+.together-footer .together-box .mark i{
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: url(../images/mark.png) no-repeat;
+    background-size: 20px;
+    margin: 0 auto;
+}
+
+.product-list{
+    background: #fff;
+}
+.product-list ul{
+    overflow: hidden;
+    margin-right: -10px;
+}
+.product-list ul li{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 50%;
+    display: inline-block;
+    padding-right: 10px;
+    float: left;
+}
+.product-list ul li img{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+.product-list ul li .price{
+    font-size: 13px;
+    color: #999;
+}
+.product-list ul li .price em{
+    color: #FF0B33;
+    font-size: 15px;
+}
+.product-list ul li .title{
+    font-weight: 400;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    font-size: 13px;
+}
+.video {
+    margin: 10px 0;
+}
+.explain{
+    font-weight: normal;
+    color: #999;
+    font-size: 13px;
+}
+.product-par{
+    background: #fff;
+    position: relative;
+}
+.product-par .par-table{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.product-par .par-table .key{
+    color: #999;
+    padding-left: 10px;
+}
+.product-par .par-table .value{
+    padding-right: 10px;
+}
+.product-par .par-table tr{
+    color: #666;
+    position: relative;
+}
+.product-par .par-table td{
+    padding: 10px 0;
+    vertical-align: top;
+    font-size: 13px;
+}
+
+/*****表单*****/
+.getMobileCode{
+    width: 110px;
+    height: 30px;
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    font-size: 13px;
+    line-height: 30px;
+    color: #fff;
+    text-align: center;
+    background: #01a4e4;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+.bottomBtn{
+    padding: 0;
+    margin: 0;
+    height: 44px;
+    line-height: 44px;
+    background: #01a4e4;
+    display: block;
+    text-align: center;
+    position: absolute;
+    bottom:0;
+    width: 100%;
+    color: #fff;
+}
+
+/*****个人中心*****/
+.home_card {
+    width: 100%;
+    min-width: 320px;
+    color: #fff;
+    clear: both;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+}
+.home_card .home_card_portrait {
+    float: left;
+    width: 80px;
+    margin: 0 10px;
+}
+.home_card .home_card_head_img {
+    display: block;
+    overflow: hidden;
+     width: 70px;
+    height: 70px;
+    margin: 15px 0 15px;
+    background: #fff;
+}
+.home_card .home_card_head_img img{
+    width: 100%;
+}
+.home_card .home_card_uname {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding-top: 16px;
+}
+.home_card .home_card_uname_link {
+    color: #fff;
+    float: left;
+    max-width: 105px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #333;
+}
+.home_tab{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    text-align: center;
+    background: #fff;
+}
+.home_tab .tab_item {
+    width: 100%;
+    display: block;
+    margin: 0;
+    line-height: 180%;
+    padding: 4px 0;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+}
+.home_tab .tab_item .tab_tit{
+    display: block;
+    line-height: 20px;
+    color: #333;
+}
+.home_tab .tab_item .tab_status{
+    display: block;
+    font-size: 12px;
+    line-height: 18px;
+    color: #FF0B33;
+}
