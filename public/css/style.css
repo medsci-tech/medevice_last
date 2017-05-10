@@ -106,8 +106,6 @@ body {
     color: #FF0B33;
 }
 .product-details .product-cell{
-    border-bottom: 1px solid #dfdfdf;
-    border-top: 1px solid #dfdfdf;
     padding: 0 10px;
     background: #fff;
 }
@@ -135,7 +133,6 @@ body {
     right: 2px;
 }
 .product-details .product-details-box{
-    border-top: 1px solid #dfdfdf;
     background: #fff;
 }
 .product-details .product-details-box .details-nav{
@@ -222,6 +219,7 @@ body {
     background: url(../images/mark.png) no-repeat;
     background-size: 20px;
     margin: 0 auto;
+    margin-top: 3px;
 }
 
 .product-list{

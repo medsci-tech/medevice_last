@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>登录</title>
+    <title>电子登记</title>
     <link rel="stylesheet" href="{{asset('/css/frozen.css')}}">
     <link rel="stylesheet" href="{{asset('/css/style.css')}}">
 </head>
