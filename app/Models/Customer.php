@@ -14,7 +14,7 @@ class Customer extends Model
     /**
      * @var string
      */
-    protected $table = 'customers';
+    protected $table = 'users';
 
     /**
      * @var array
@@ -31,6 +31,6 @@ class Customer extends Model
      */
     public function type()
     {
-        return $this->belongsTo(CustomerType::class, 'type_id');
+        //return $this->belongsTo(CustomerType::class, 'type_id');
     }
 }
