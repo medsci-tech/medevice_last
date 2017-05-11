@@ -26,21 +26,20 @@
 <div>
     <div class="lfloat ui-col ui-col-25">
         <ul id="nav" style="overflow-y: hidden">
-            <li class="aa" id="tb_0" onClick="hoverli(0,0);">所有</li>
+            <li class="aa" id="0" >所有</li>
             @foreach($categories as $key=>  $cat)
-                <li class="aa" id="tb_{{ $key+1  }}" onClick="hoverli({{$key+1}},{{$cat->id}});">{{$cat->name}}</li>
+                <li class="aa" id="{{ $cat->id  }}" >{{$cat->name}}</li>
             @endforeach
         </ul>
     </div>
     <div class="rfloat ui-col ui-col-75" id="products-list">
         <ul class="ui-list ui-border-tb dis" id="tbc_0">
         @foreach($categories as $key=> $cat)
-            @if($cat->id == $categories[0]->id)
-                <ul class="ui-list ui-border-tb dis" id="tbc_{{$key+1}}">
+                <ul class="ui-list ui-border-tb dis" id="tbc_{{$cat->id}}">
                     @foreach($products as $product)
                         <li class="ui-border-t">
                             <div class="ui-list-thumb">
-                                <span style="background-image:url({{$product->logo}})"></span>
+                                <span style="background-image:url({{$product->logo}}?imageView2/1/w/65/h/65/q/9)"></span>
                             </div>
                             <div class="ui-list-info">
                                 <a href="/shop/detail?id={{$product->id}}" class="ui-txt-default">
@@ -52,28 +51,67 @@
                                     @if($product->price)
                                         <div class="ui-badge-muted" style="background:#18B4ED;">零售价格 ￥{{$product->price}}</div>
                                     @endif
-
                                     {{--<h6 class="ui-nowrap ui-txt-info">{{$product->introduction}}</h6>--}}
                                 </a>
                             </div>
                         </li>
                     @endforeach
                 </ul>
-            @else
-                <ul class="undis" id="tbc_{{$key+1}}"></ul>
-            @endif
+
         @endforeach
     </div>
 </div>
 <script src="http://cdn.bootcss.com/bootswatch/2.0.2/js/jquery.js"></script>
 <script type="text/javascript" language="javascript">
-    function hoverli(id,cat_id) {
-        var x = document.getElementById("nav").getElementsByTagName("li");
-        for (var i = 0; i < x.length; i++) {console.log(i);
-            document.getElementById('tb_' + i).style.background = '#f8f8f8';
-            document.getElementById('tb_' + i).style.color = '#000000';
-            document.getElementById('tbc_' + i).className = 'undis';
-        }
+    $("li.aa").click(function(){
+        var _this =$(this);
+        var id = $(_this).attr('id');
+        $(_this).siblings().css({"background-color":"#f8f8f8","color":"#0a0a0a"});
+        $(_this).css({"background-color":"#00a5e0","color":"white"});
+
+        $.ajax({
+            url: '/shop/get-products-by-cat-id',
+            data: {
+                cat_id: id
+            },
+            type: "get",
+            dataType: "json",
+            success: function (json) {
+                $("#tbc_"+id).siblings().empty();
+                strHtml = '';
+                $(json.products).each(function () {
+                    this.logo = this.logo+'?imageView2/1/w/65/h/65/q/9';
+                    //strHtml += '<li class="ui-border-t"><div class="ui-list-thumb"><span style="background-image:url(http://placeholder.qiniudn.com/100x100)"></span></div><div class="ui-list-info"><a href="/shop/detail?id=' + this.id + '" class="ui-txt-default"><h4 class="ui-nowrap">' + this.name + '</h4><p class="ui-nowrap">' + this.introduction + '</p></a></div></li>';
+                    if (this.name) {
+                        strHtml += '<li class="ui-border-t"><div class="ui-list-thumb"><span style="background-image:url(' + this.logo + ')"></span></div><div class="ui-list-info"><a href="/shop/detail?id=' + this.id + '" class="ui-txt-default"><h6 class="">' + this.name + '</h6><div class="ui-badge-muted" style="background:#18B4ED;">零售价格 ￥' + this.price + '</div></a></div></li>';
+                    } else {
+                        strHtml += '<li class="ui-border-t"><div class="ui-list-thumb"><span style="background-image:url(' + this.logo + ')"></span></div><div class="ui-list-info"><a href="/shop/detail?id=' + this.id + '" class="ui-txt-default"><h6 class="">' + this.name + '</h6></a></div></li>';
+                    }
+                });
+                if (strHtml == '') {
+                    $("#tbc_"+id).html('<div class="ui-txt-tips ui-txt-info ui-flex ui-flex-pack-center ui-top">已经没有更多产品了！</div>');
+                } else {
+                    $("#tbc_"+id).html(strHtml);
+                }
+
+            },
+            error: function (xhr, status, errorThrown) {
+                console.log("Sorry, there was a problem!");
+            }
+        });
+
+
+    });
+
+
+    function hoverli(id) {
+
+//        var x = document.getElementById("nav").getElementsByTagName("li");
+//        for (var i = 0; i < x.length; i++) {console.log(i);
+//            document.getElementById('tb_' + i).style.background = '#f8f8f8';
+//            document.getElementById('tb_' + i).style.color = '#000000';
+//            document.getElementById('tbc_' + i).className = 'undis';
+//        }
         $.ajax({
             url: '/shop/get-products-by-cat-id',
             data: {
@@ -86,16 +124,17 @@
                 strHtml = '';
                 $(json.products).each(function () {
                     //strHtml += '<li class="ui-border-t"><div class="ui-list-thumb"><span style="background-image:url(http://placeholder.qiniudn.com/100x100)"></span></div><div class="ui-list-info"><a href="/shop/detail?id=' + this.id + '" class="ui-txt-default"><h4 class="ui-nowrap">' + this.name + '</h4><p class="ui-nowrap">' + this.introduction + '</p></a></div></li>';
-                    if (this.tag) {
+                    if (this.name) {
                         strHtml += '<li class="ui-border-t"><div class="ui-list-thumb"><span style="background-image:url(' + this.logo + ')"></span></div><div class="ui-list-info"><a href="/shop/detail?id=' + this.id + '" class="ui-txt-default"><h6 class="">' + this.name + '</h6><div class="ui-badge-muted" style="background:#18B4ED;">' + this.price + '</div></a></div></li>';
                     } else {
                         strHtml += '<li class="ui-border-t"><div class="ui-list-thumb"><span style="background-image:url(' + this.logo + ')"></span></div><div class="ui-list-info"><a href="/shop/detail?id=' + this.id + '" class="ui-txt-default"><h6 class="">' + this.name + '</h6></a></div></li>';
                     }
                 });
+                alert(strHtml)
                 if (strHtml == '') {
-                    $("#tbc_" + cat_id).html('<div class="ui-txt-tips ui-txt-info ui-flex ui-flex-pack-center ui-top">已经没有更多产品了！</div>');
+                    $("#tbc_" + id).html('<div class="ui-txt-tips ui-txt-info ui-flex ui-flex-pack-center ui-top">已经没有更多产品了！</div>');
                 } else {
-                    $("#tbc_" + cat_id).html(strHtml);
+                    $("#tbc_" + id).html(strHtml);
                 }
 
             },

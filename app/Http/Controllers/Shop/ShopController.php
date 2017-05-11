@@ -39,7 +39,11 @@ class ShopController extends Controller
      */
     public function getProductByCatID(Request $request)
     {
-        return response()->json(['products' => Product::where('category_id', $request->input('cat_id'))->get()]);
+        if($request->input('cat_id'))
+            $where = array('category_id'=>  $request->input('cat_id'));
+        else
+            $where =array();
+        return response()->json(['products' => Product::where($where)->get()]);
     }
 
     /**
