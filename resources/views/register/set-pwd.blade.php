@@ -5,28 +5,32 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
     <title>完善密码</title>
-    <link rel="stylesheet" href="{{asset('/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('/css/frozen.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/style.css')}}">
 </head>
 <body>
-<div class="ui-container signup-top signup-padding">
-    <div class="ui-border-radius signup-padding signup-shadow">
-        <form action="{{url('/register/set-pwd')}}" method="POST" id="signup-form" id="signup-form">
-            <div class="ui-form-item ui-form-item-pure ui-border-radius ui-form">
-                <input type="password" placeholder="请输入密码" id="password" name="password"
-                       value="{{ isset($input) ? $input['password'] : '' }}">
-                <a href="#" class="ui-icon-close" onclick="clean('password')"></a>
-            </div>
-            <h6 class="ui-txt-warning" id="label_password">{{ isset($errors) ?  $errors->first('password') : '' }}</h6>
-
-            <div class="ui-btn-wrap">
-                <button class="ui-btn-lg ui-btn-primary" type="submit">
-                    完善密码
-                </button>
-            </div>
-        </form>
+<header class="head-bar">
+    <div class="bar-left">
+        <a href="javascript:history.back()" class="goback"></a>
     </div>
+    <div class="head-title">设置密码</div>
+</header>
+<div class="ui-form ui-border-t">
+    <form action="#">
+        <div class="ui-form-item ui-form-item-pure ui-border-b">
+            <input type="text" placeholder="设置用户名">
+        </div>
+        <div class="ui-form-item ui-form-item-pure ui-border-b">
+            <input type="password" placeholder="设置密码">
+        </div>
+        <div class="ui-form-item ui-form-item-pure ui-border-b">
+            <input type="password" placeholder="再次输入密码">
+        </div>
+        <a href="" class="bottomBtn">完成</a>
+    </form>
 </div>
+<script src="{{asset('/js/zepto.min.js')}}"></script>
+<script src="{{asset('/js/layer.js')}}"></script>
 <script src="http://cdn.bootcss.com/bootswatch/2.0.2/js/jquery.js"></script>
 <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
 <script type="text/javascript" language="javascript">

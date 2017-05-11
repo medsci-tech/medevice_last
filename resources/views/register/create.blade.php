@@ -31,8 +31,8 @@
         </form>
     </div>
 </div>
-<script src="/js/zepto.min.js"></script>
-<script src="/js/layer.js"></script>
+<script src="{{asset('/js/zepto.min.js')}}"></script>
+<script src="{{asset('/js/layer.js')}}"></script>
 <script>
     function validateMobile() {
         var mobile = document.getElementById('mobile').value;
