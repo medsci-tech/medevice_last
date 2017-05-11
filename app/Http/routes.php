@@ -48,6 +48,7 @@ Route::group(['middleware' => ['web']], function () {
     });
     Route::group(['prefix' => 'apply', 'namespace' => 'Apply'], function () {
         Route::any('/', 'ApplyController@index');
+        Route::get('/success', 'ApplyController@success');
     });
 
     Route::group(['prefix' => 'article', 'namespace' => 'Article'], function () {

@@ -32,8 +32,15 @@ class ApplyController extends Controller
                 return response()->json(['code' => 200, 'status' => 0, 'message' => '服务器异常!']);
             }
         }
-        return view('apply.index', ['customer' => null]);
+        return view('apply.index');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function success(Request $request)
+    {
+        return view('apply.success', ['customer' => null]);
+    }
 
 } /*class*/
