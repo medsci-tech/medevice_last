@@ -6,18 +6,30 @@
     <meta name="format-detection" content="telephone=no">
     <title>登记成功</title>
     <link rel="stylesheet" href="{{asset('/css/frozen.css')}}">
-    <link rel="stylesheet" href="{{asset('/css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/style.css')}}">
 </head>
 <body>
 <div>
-    <section class="ui-notice">
-        <div class="ui-icon-success success_sign">
+    <header class="head-bar">
+        <div class="bar-left">
+            <a href="javascript:history.back()" class="goback"></a>
         </div>
-        <p>登记成功</p>
-        <div class="ui-notice-btn">
-            <button class="ui-btn-primary ui-btn-lg" id="closeWindow">确定</button>
+        <div class="head-title">电子登记</div>
+    </header>
+    <div class="success_box">
+        <div class="success_tip">
+            <img src="/images/success_icon.png" alt="">
+            <span>您已登记成功</span>
         </div>
-    </section>
+        <section class="code_box">
+            <p>长按下方二维码识别</p>
+            <p>关注药械通公众号了解更多信息</p>
+            <p>
+                <img style="width: 150px; height: 150px;" src="/images/qr_code.jpg">
+            </p>
+        </section>
+        <a href="" class="bottomBtn">首页</a>
+    </div>
 </div>
 
 </body>

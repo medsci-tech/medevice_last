@@ -321,6 +321,7 @@ body {
     text-align: center;
     position: absolute;
     bottom:0;
+    right: 0;
     width: 100%;
     color: #fff;
 }
@@ -396,4 +397,38 @@ body {
     font-size: 12px;
     line-height: 18px;
     color: #FF0B33;
+}
+
+.success_box {
+    margin: 20px;
+    color: inherit;
+    box-sizing: border-box;
+    padding: 0px;
+}
+.success_tip{
+    text-align: center;
+    display: block;
+}
+.success_tip img{
+    width: 50px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.success_tip span{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+.code_box{
+    margin-top: 20px;
+    color: inherit;
+    box-sizing: border-box;
+    padding: 0px;
+}
+.code_box p{
+    line-height: 24px;
+    color: #828282;
+    text-align: center;
+    white-space: normal;
+    font-weight: 100;
 }
