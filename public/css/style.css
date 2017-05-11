@@ -260,6 +260,8 @@ body {
     font-size: 13px;
 }
 .video {
+    width: 100%;
+    display: block;
     margin: 10px 0;
 }
 .explain{
