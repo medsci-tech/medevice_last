@@ -49,7 +49,7 @@
                                     {{--style="color:#6caf61;border-color: #6caf61;">{{$product->introduction}}</label>--}}
                                     {{--</div>--}}
                                     @if($product->price)
-                                        <div class="ui-badge-muted" style="background:#18B4ED;">零售价格 ￥{{$product->price}}</div>
+                                        <div class="ui-badge-muted" style="background:#18B4ED;">零售价格 {{$product->price}}</div>
                                     @endif
                                     {{--<h6 class="ui-nowrap ui-txt-info">{{$product->introduction}}</h6>--}}
                                 </a>
@@ -83,7 +83,7 @@
                     this.logo = this.logo+'?imageView2/1/w/65/h/65/q/9';
                     //strHtml += '<li class="ui-border-t"><div class="ui-list-thumb"><span style="background-image:url(http://placeholder.qiniudn.com/100x100)"></span></div><div class="ui-list-info"><a href="/shop/detail?id=' + this.id + '" class="ui-txt-default"><h4 class="ui-nowrap">' + this.name + '</h4><p class="ui-nowrap">' + this.introduction + '</p></a></div></li>';
                     if (this.name) {
-                        strHtml += '<li class="ui-border-t"><div class="ui-list-thumb"><span style="background-image:url(' + this.logo + ')"></span></div><div class="ui-list-info"><a href="/shop/detail?id=' + this.id + '" class="ui-txt-default"><h6 class="">' + this.name + '</h6><div class="ui-badge-muted" style="background:#18B4ED;">零售价格' + this.price + '</div></a></div></li>';
+                        strHtml += '<li class="ui-border-t"><div class="ui-list-thumb"><span style="background-image:url(' + this.logo + ')"></span></div><div class="ui-list-info"><a href="/shop/detail?id=' + this.id + '" class="ui-txt-default"><h6 class="">' + this.name + '</h6><div class="ui-badge-muted" style="background:#18B4ED;">零售价格 ' + this.price + '</div></a></div></li>';
                     } else {
                         strHtml += '<li class="ui-border-t"><div class="ui-list-thumb"><span style="background-image:url(' + this.logo + ')"></span></div><div class="ui-list-info"><a href="/shop/detail?id=' + this.id + '" class="ui-txt-default"><h6 class="">' + this.name + '</h6></a></div></li>';
                     }
