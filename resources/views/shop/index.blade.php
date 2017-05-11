@@ -102,50 +102,7 @@
 
 
     });
-
-
-    function hoverli(id) {
-
-//        var x = document.getElementById("nav").getElementsByTagName("li");
-//        for (var i = 0; i < x.length; i++) {console.log(i);
-//            document.getElementById('tb_' + i).style.background = '#f8f8f8';
-//            document.getElementById('tb_' + i).style.color = '#000000';
-//            document.getElementById('tbc_' + i).className = 'undis';
-//        }
-        $.ajax({
-            url: '/shop/get-products-by-cat-id',
-            data: {
-                //cat_id: id;
-                cat_id: cat_id //分类id
-            },
-            type: "get",
-            dataType: "json",
-            success: function (json) {
-                strHtml = '';
-                $(json.products).each(function () {
-                    //strHtml += '<li class="ui-border-t"><div class="ui-list-thumb"><span style="background-image:url(http://placeholder.qiniudn.com/100x100)"></span></div><div class="ui-list-info"><a href="/shop/detail?id=' + this.id + '" class="ui-txt-default"><h4 class="ui-nowrap">' + this.name + '</h4><p class="ui-nowrap">' + this.introduction + '</p></a></div></li>';
-                    if (this.name) {
-                        strHtml += '<li class="ui-border-t"><div class="ui-list-thumb"><span style="background-image:url(' + this.logo + ')"></span></div><div class="ui-list-info"><a href="/shop/detail?id=' + this.id + '" class="ui-txt-default"><h6 class="">' + this.name + '</h6><div class="ui-badge-muted" style="background:#18B4ED;">' + this.price + '</div></a></div></li>';
-                    } else {
-                        strHtml += '<li class="ui-border-t"><div class="ui-list-thumb"><span style="background-image:url(' + this.logo + ')"></span></div><div class="ui-list-info"><a href="/shop/detail?id=' + this.id + '" class="ui-txt-default"><h6 class="">' + this.name + '</h6></a></div></li>';
-                    }
-                });
-                alert(strHtml)
-                if (strHtml == '') {
-                    $("#tbc_" + id).html('<div class="ui-txt-tips ui-txt-info ui-flex ui-flex-pack-center ui-top">已经没有更多产品了！</div>');
-                } else {
-                    $("#tbc_" + id).html(strHtml);
-                }
-
-            },
-            error: function (xhr, status, errorThrown) {
-                console.log("Sorry, there was a problem!");
-            }
-        });
-        document.getElementById('tbc_' + id).className = 'ui-list ui-border-tb dis';
-        document.getElementById('tb_' + id).style.background = '#00a5e0';
-        document.getElementById('tb_' + id).style.color = 'white';
-    }
+    
 </script>
 </body>
 </html>
