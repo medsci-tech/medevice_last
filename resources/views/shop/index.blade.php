@@ -39,7 +39,7 @@
                     @foreach($products as $product)
                         <li class="ui-border-t">
                             <div class="ui-list-thumb">
-                                <span style="background-image:url({{$product->logo}}?imageView2/1/w/70/h/70/q/90)"></span>
+                                <span style="background-image:url({{$product->logo}}?imageView2/1/w/65/h/65/q/90)"></span>
                             </div>
                             <div class="ui-list-info">
                                 <a href="/shop/detail?id={{$product->id}}" class="ui-txt-default">
@@ -80,7 +80,7 @@
                 $("#tbc_"+id).siblings().empty();
                 strHtml = '';
                 $(json.products).each(function () {
-                    this.logo = this.logo+'?imageView2/1/w/70/h/70/q/90';
+                    this.logo = this.logo+'?imageView2/1/w/65/h/65/q/90';
                     //strHtml += '<li class="ui-border-t"><div class="ui-list-thumb"><span style="background-image:url(http://placeholder.qiniudn.com/100x100)"></span></div><div class="ui-list-info"><a href="/shop/detail?id=' + this.id + '" class="ui-txt-default"><h4 class="ui-nowrap">' + this.name + '</h4><p class="ui-nowrap">' + this.introduction + '</p></a></div></li>';
                     if (this.name) {
                         strHtml += '<li class="ui-border-t"><div class="ui-list-thumb"><span style="background-image:url(' + this.logo + ')"></span></div><div class="ui-list-info"><a href="/shop/detail?id=' + this.id + '" class="ui-txt-default"><h6 class="">' + this.name + '</h6><div class="ui-badge-muted" style="background:#18B4ED;">零售价格 ' + this.price + '</div></a></div></li>';
