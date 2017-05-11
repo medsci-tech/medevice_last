@@ -7,6 +7,7 @@
     <title>登录</title>
     <link rel="stylesheet" href="{{asset('/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('/css/frozen.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/style.css')}}">
 </head>
 <body>
 <!--头部导航-->
@@ -30,8 +31,8 @@
         </form>
     </div>
 </div>
-<script src="js/zepto.min.js"></script>
-<script src="js/layer.js"></script>
+<script src="/js/zepto.min.js"></script>
+<script src="/js/layer.js"></script>
 <script>
     function validateMobile() {
         var mobile = document.getElementById('mobile').value;

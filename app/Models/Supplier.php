@@ -14,7 +14,6 @@ class Supplier extends Model
     /**
      * @var string
      */
-    protected $table = 'suppliers';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
