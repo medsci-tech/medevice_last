@@ -33,7 +33,7 @@
         </ul>
     </div>
     <div class="rfloat ui-col ui-col-75" id="products-list">
-        <ul class="ui-list ui-border-tb dis" id="tbc_0">
+        <ul class="ui-list ui-border-tb dis" id="tbc_0"></ul>
         @foreach($categories as $key=> $cat)
                 <ul class="ui-list ui-border-tb dis" id="tbc_{{$cat->id}}">
                     @foreach($products as $product)
@@ -102,7 +102,7 @@
 
 
     });
-    
+
 </script>
 </body>
 </html>
