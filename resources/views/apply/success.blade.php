@@ -14,7 +14,7 @@
         <div class="bar-left">
             <a href="javascript:history.back()" class="goback"></a>
         </div>
-        <div class="head-title">电子登记</div>
+        <div class="head-title">登记成功</div>
     </header>
     <div class="success_box">
         <div class="success_tip">
@@ -28,9 +28,7 @@
                 <img style="width: 150px; height: 150px;" src="/images/qr_code.jpg">
             </p>
         </section>
-        <a href="" class="bottomBtn">首页</a>
     </div>
 </div>
-
 </body>
 </html>
