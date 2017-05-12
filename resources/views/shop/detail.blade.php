@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{asset('/css/frozen.css')}}">
     <link rel="stylesheet" href="{{asset('/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('/css/swiper-3.4.2.min.css')}}">
+
 </head>
 <body>
 <!--头部导航-->
@@ -87,18 +88,105 @@
     </div>
     <div class="together-footer">
         <div class="together-box">
-            <div class="together">我要合作</div>
+            <div class="together" onclick="javascript:showOrderDia()">我要合作</div>
             <div class="mark @if ($is_collect == 1)active @endif"><!--active为已收藏状态，反之-->
                 <i></i>
                 收藏
             </div>
         </div>
     </div>
+
+    <div class="ui-dialog" id="create">
+        <div class="ui-dialog-cnt">
+            <header class="ui-dialog-hd ui-border-b">
+                <h3>完成申请</h3>
+                <i class="ui-dialog-close" data-role="button" onclick="closeOrderDia()"></i>
+            </header>
+            <form action="#" style="padding: 5px">
+                <div class="ui-form-item ui-form-item-pure ui-border-radius ui-form dialog-top">
+                    <input type="text" placeholder="请输入姓名" name="name" id="name">
+                </div>
+                <div class="ui-form-item ui-form-item-pure ui-border-radius ui-form dialog-top">
+                    <input type="text" placeholder="请输入联系电话" name="phone" id="phone">
+                </div>
+
+                    <input type="checkbox" name="join_type" value="1"><span>代理产品</span>
+                    <input type="checkbox" name="join_type" value="2"><span>提供学术服务</span>
+                    <input type="checkbox" name="join_type" value="3"><span>其他</span>
+
+
+                <div class="ui-dialog-ft">
+                    <button type="button" data-role="button" onclick="store({{$data->id}})">申请</button>
+                    <button type="button" data-role="button" onclick="closeOrderDia()">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </section>
 <script src="{{asset('/js/zepto.min.js')}}"></script>
 <script src="{{asset('/js/layer.js')}}"></script>
 <script src="{{asset('/js/swiper-3.4.2.jquery.min.js')}}"></script>
+
+<script src="{{asset('/js/frozen.js')}}"></script>
 <script>
+    function showDia(success, title, content) {
+        $("#dia_title").text(title);
+        $("#dia_content").text(content);
+        if(success) {
+            $("#icon").removeClass().addClass("ui-icon-success success_dia");
+        } else {
+            $("#icon").removeClass().addClass("ui-icon-success ui-txt-warning");
+        }
+        document.getElementById("dialog").style.display = "-webkit-box";
+    }
+    function closeDia() {
+        document.getElementById("dialog").style.display = "none";
+    }
+
+    function showOrderDia() {
+        document.getElementById("create").style.display = "-webkit-box";
+    }
+    function closeOrderDia() {
+        document.getElementById("create").style.display = "none";
+    }
+    function store(product_id) {
+        real_name =  document.getElementById("name").value;
+        contact_phone =  document.getElementById("phone").value;
+        var obj=document.getElementsByName('join_type'); //选择所有name="'test'"的对象，返回数组
+//取到对象数组后，我们来循环检测它是不是被选中
+        var s='';
+        for(var i=0; i<obj.length; i++){
+            if(obj[i].checked) s+=obj[i].value+','; //如果选中，将value添加到变量s中
+        }
+        str=s.substring(0,s.length-1)
+
+        $.ajax({
+            url: '/shop/create-order',
+            data: {
+                product_id: product_id,
+                real_name: real_name,
+                contact_phone: contact_phone,
+                join_type: str,
+            },
+            type: "get",
+            dataType: "json",
+            success: function (json) {
+                if(json.success) {
+                    closeOrderDia();
+                    showDia(true, '申请成功', '合作申请提交成功,我们将会在两个工作日内与您联系！');
+                } else {
+                    showDia(true, '申请失败', '申请失败,请重试！');
+                }
+            },
+            error: function (xhr, status, errorThrown) {
+                showDia(true, '申请失败', '申请失败,请重试！');
+                console.log("Sorry, there was a problem!");
+            }
+        });
+    }
+</script>
+<script>
+
     var mySwiper = new Swiper ('.swiper-container', {
         pagination: '.swiper-pagination',
     })

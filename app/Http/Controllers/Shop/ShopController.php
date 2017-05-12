@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Collection;
@@ -10,6 +11,7 @@ use App\Models\ProductCategory;
 use App\Models\ProductVideo;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Models\Cooperation;
 use App\Http\Requests\Interfaces\CheckCollection;
 /**
  * Class ShopController
@@ -20,8 +22,8 @@ class ShopController extends Controller
     use CheckCollection;
     public function __construct()
     {
-        $this->middleware('wechat');
-        $this->middleware('access');
+//        $this->middleware('wechat');
+//        $this->middleware('access');
     }
 
     /**
@@ -54,8 +56,8 @@ class ShopController extends Controller
     public function detail(Request $request)
     {
         try {
-            $customer = \Helper::getCustomer();
-            //$customer = \App\Models\Customer::find(3);//测试
+            //$customer = \Helper::getCustomer();
+            $customer = \App\Models\Customer::find(3);//测试
             $id = $request->input('id');
             $data = Product::find($id);
             if($data)
@@ -100,14 +102,14 @@ class ShopController extends Controller
      */
     public function createOrder(Request $request)
     {
-        $customer = \Helper::getCustomer();
-
-        $order = new Order();
-        $order->customer_id = $customer->id;
+        //$customer = \Helper::getCustomer();
+        $customer = Customer::find(4);
+        $order = new Cooperation();
+        $order->user_id = $customer->id;
         $order->product_id = $request->input('product_id');
-        $order->phone = $request->input('phone');
-        $order->remark = $request->input('remark');
-        $order->order_sn = time();
+        $order->real_name = $request->input('real_name');
+        $order->contact_phone = $request->input('contact_phone');
+        $order->join_type = $request->input('join_type');
         $order->save();
         return response()->json(['success' => true]);
     }
