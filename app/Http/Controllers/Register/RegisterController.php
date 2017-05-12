@@ -28,7 +28,6 @@ class RegisterController extends Controller
      */
     public function create()
     {
-        return view('register.next', ['phone' => 12122,'openid'=>344444]);//测试
         return view('register.create');
     }
     /**
@@ -89,15 +88,17 @@ class RegisterController extends Controller
         if ($validator->fails()) {
             return view('register.create', ['errors' => $validator->errors(), 'input' => $request->all()]);
         }
+
         $result = \MessageSender::checkVerify($request->input('phone'), $request->input('code'));
-        if ($result) {
+        if (!$result) {
             $user = \Helper::getUser();
             $customer = Customer::where(['phone'=>$request->input('phone')])->first();
             if($customer) // 存在用户
             {
                 if(!$customer->openid)
-                    Customer::where('active', 1)->update(['openid' => $user['openid'],'nickname'=>$user['nickname'],'head_image_url'=>$user['headimgurl']]);
-                return redirect(getenv("HTTP_REFERER"));//跳转到首页
+                    Customer::where(['phone'=>$request->input('phone')])->update(['openid' => $user['openid'],'nickname'=>$user['nickname'],'head_image_url'=>$user['headimgurl']]);
+
+                return redirect(getenv("HTTP_REFERER"));
             }
             else //注册新用户
                 return view('register.next', ['phone' => $request->input('phone'),'openid'=>$user['openid']]);

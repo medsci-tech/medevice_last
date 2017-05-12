@@ -97,7 +97,7 @@
                         ,skin: 'msg'
                         ,time: 3
                     });
-                   console.log('ok');
+                   window.location.href=document.referrer;
                     //$('#addForm')[0].reset()
                 }
             },
