@@ -22,8 +22,8 @@ class ShopController extends Controller
     use CheckCollection;
     public function __construct()
     {
-//        $this->middleware('wechat');
-//        $this->middleware('access');
+        $this->middleware('wechat');
+        $this->middleware('access');
     }
 
     /**
@@ -102,8 +102,7 @@ class ShopController extends Controller
      */
     public function createOrder(Request $request)
     {
-        //$customer = \Helper::getCustomer();
-        $customer = Customer::find(4);
+        $customer = \Helper::getCustomer();
         $order = new Cooperation();
         $order->user_id = $customer->id;
         $order->product_id = $request->input('product_id');
