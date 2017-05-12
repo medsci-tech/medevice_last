@@ -151,41 +151,83 @@
                     if(obj[i].checked) s+=obj[i].value+','; //如果选中，将value添加到变量s中
                 }
                 var str=s.substring(0,s.length-1);
-                $.ajax({
-                    url: '/shop/create-order',
-                    data: {
-                        product_id: product_id,
-                        real_name: real_name,
-                        contact_phone: contact_phone,
-                        join_type: str,
-                    },
-                    type: "get",
-                    dataType: "json",
-                    success: function (json) {
-                        if(json.success) {
-                            layer.open({
-                                content: "申请提交成功,我们将会在两个工作日内与您联系！"
-                                ,skin: 'msg'
-                                ,time: 2
-                            });
-                            layer.close(index);
-                        } else {
+                function validateMobile() {
+                    var mobile = document.getElementById('phone').value;
+                    var name = document.getElementById('name').value;
+                    if (name.length == 0) {
+                        layer.open({
+                            content: "姓名不能为空！"
+                            ,skin: 'msg'
+                            ,time: 2
+                        });
+                        document.getElementById('name').focus();
+                    }
+                    if (mobile.length == 0) {
+                        layer.open({
+                            content: "手机号不能为空！"
+                            ,skin: 'msg'
+                            ,time: 2
+                        });
+                        document.getElementById('phone').focus();
+                    }
+                    if (mobile.length != 11) {
+                        layer.open({
+                            content: "请输入有效的手机号码！"
+                            ,skin: 'msg'
+                            ,time: 2
+                        });
+                        document.getElementById('phone').focus();
+                        return false;
+                    }
+                    var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+                    if (!myreg.test(mobile)) {
+                        layer.open({
+                            content: "请输入有效的手机号码！"
+                            ,skin: 'msg'
+                            ,time: 2
+                        });
+                        document.getElementById('phone').focus();
+                        return false;
+                    }
+                    return true;
+                }
+                if(validateMobile()){
+                    $.ajax({
+                        url: '/shop/create-order',
+                        data: {
+                            product_id: product_id,
+                            real_name: real_name,
+                            contact_phone: contact_phone,
+                            join_type: str,
+                        },
+                        type: "get",
+                        dataType: "json",
+                        success: function (json) {
+                            if(json.success) {
+                                layer.open({
+                                    content: "申请提交成功,我们将会在两个工作日内与您联系！"
+                                    ,skin: 'msg'
+                                    ,time: 2
+                                });
+                                layer.close(index);
+                            } else {
+                                layer.open({
+                                    content: "申请失败,请重试！"
+                                    ,skin: 'msg'
+                                    ,time: 2
+                                });
+                            }
+                        },
+                        error: function (xhr, status, errorThrown) {
                             layer.open({
                                 content: "申请失败,请重试！"
                                 ,skin: 'msg'
                                 ,time: 2
                             });
+                            console.log("Sorry, there was a problem!");
                         }
-                    },
-                    error: function (xhr, status, errorThrown) {
-                        layer.open({
-                            content: "申请失败,请重试！"
-                            ,skin: 'msg'
-                            ,time: 2
-                        });
-                        console.log("Sorry, there was a problem!");
-                    }
-                });
+                    });
+                }
             }
         });
     }
