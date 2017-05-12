@@ -61,7 +61,7 @@
                 <!-- 视频加载 -->
                 @if($data->videos)
                     @foreach($data->videos as $key=>$video)
-                        <div  class="video" id="id_video_container_{{ $key }}" style="width:100%;height:400px;"></div>
+                        <div  class="video" id="id_video_container_{{ $key }}"></div>
                     @endforeach
                 @endif
 
@@ -88,7 +88,7 @@
     <div class="together-footer">
         <div class="together-box">
             <div class="together">我要合作</div>
-            <div class="mark">
+            <div class="mark" onclick="add_like({{$data->id}})">
                 <i></i>
                 收藏
             </div>
@@ -96,6 +96,7 @@
     </div>
 </section>
 <script src="{{asset('/js/zepto.min.js')}}"></script>
+<script src="{{asset('/js/layer.js')}}"></script>
 <script src="{{asset('/js/swiper-3.4.2.jquery.min.js')}}"></script>
 <script>
     var mySwiper = new Swiper ('.swiper-container', {
@@ -134,6 +135,24 @@
             return scrollPos;
         }
     });
+	
+	function add_like(id) {
+    $.ajax({
+        type: "POST",
+		url:"/shop/collect",
+        data: {product_id:id},
+        dataType: "json",
+        success: function(json){
+            if(json.code == 200){
+				layer.open({
+                    content: json.message
+                    ,skin: 'msg'
+                    ,time: 2
+                });
+            }
+        }
+    });
+}
 </script>
 
 <script src="//qzonestyle.gtimg.cn/open/qcloud/video/h5/h5connect.js"></script>
@@ -141,7 +160,7 @@
     (function(){
                 @if($data->videos)
                 @foreach($data->videos as $key=> $video)
-        var option_{{ $key }} ={"auto_play":"0","file_id":"{{ $video->qcloud_file_id }}","app_id":"{{ $video->qcloud_app_id }}","width":1024,"height":576,"https":1, "remember": 1};
+        var option_{{ $key }} ={"auto_play":"0","file_id":"{{ $video->qcloud_file_id }}","app_id":"{{ $video->qcloud_app_id }}","https":1, "remember": 1};
         /*调用播放器进行播放*/
         new qcVideo.Player( "id_video_container_{{ $key }}", option_{{ $key }});
         @endforeach
