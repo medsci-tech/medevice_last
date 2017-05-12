@@ -87,9 +87,10 @@ class ShopController extends Controller
      */
     public function info(Request $request)
     {
+        $id = $request->input('id');
+        $data = Product::find($id);
         return view('shop.info', [
-            // 'product' => $product,
-            // 'collect' => ProductCollection::where('product_id', $request->input('id'))->where('customer_id', $customer->id)->get()->toArray() ? true : false
+             'data' => $data,
         ]);
     }
 

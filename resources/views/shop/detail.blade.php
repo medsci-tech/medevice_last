@@ -36,7 +36,7 @@
         <div class="product-prices">零售价格：<em>{{$data->price}}</em></div>
     </div>
     <div class="product-cell">
-        <a href="">
+        <a href="/shop/info?id={{$data->id}}">
             产品参数
         </a>
     </div>

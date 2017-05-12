@@ -21,41 +21,41 @@
         <tbody>
         <tr class="ui-border-b">
             <td class="key" width="70">品品组成</td>
-            <td class="value">胰岛素笔式数显注射器（诺和笔5®）由笔帽、笔芯架和带有记忆功能的笔体组成</td>
+            <td class="value">{{ $data->attention  }}</td>
         </tr>
         <tr class="ui-border-b">
             <td class="key" width="70">适用范围</td>
             <td class="value ">
-                用于糖尿病患者注射胰岛素
+                {{ $data->scope  }}
             </td>
         </tr>
         <tr class="ui-border-b">
             <td class="key" width="70">适用科室</td>
-            <td class="value">内分泌科</td>
+            <td class="value">{{ $data->office  }}</td>
         </tr>
         <tr class="ui-border-b">
             <td class="key" width="70">适用部位</td>
-            <td class="value">上臂、大腿、腹部、臀部</td>
+            <td class="value">{{ $data->standard  }}</td>
         </tr>
         <tr class="ui-border-b">
             <td class="key" width="70">产品规格</td>
-            <td class="value">暂无</td>
+            <td class="value">{{ $data->default_spec  }}</td>
         </tr>
         <tr class="ui-border-b">
             <td class="key" width="70">注册证号</td>
-            <td class="value">津械注准20142150021</td>
+            <td class="value">{{ $data->registration  }}</td>
         </tr>
         <tr class="ui-border-b">
             <td class="key" width="70">生产企业</td>
-            <td class="value">丹麦诺和诺德公司</td>
+            <td class="value">{{ $data->enterprise  }}</td>
         </tr>
         <tr class="ui-border-b">
             <td class="key" width="70">零售价格</td>
-            <td class="value text-danger">￥ 188</td>
+            <td class="value text-danger">{{ $data->price  }}</td>
         </tr>
         <tr class="ui-border-b">
             <td class="key" width="70">库存</td>
-            <td class="value te">有货</td>
+            <td class="value te">{{ $data->stock  }}</td>
         </tr>
         </tbody>
     </table>
