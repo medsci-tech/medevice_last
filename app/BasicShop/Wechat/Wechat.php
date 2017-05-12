@@ -68,7 +68,7 @@ class Wechat
 
     public function messageEventCallback() {
         return function ($message) {
-            if (in_array($message->Content, array('邀请函','邀请'))) {
+        if (in_array($message->Content, array('邀请函','邀请'))) {
                 return Message::make('text')->content("<a target=\"_blank\" href=\"http://g.eqxiu.com/s/948fHP3Q?eqrcode=1&from=singlemessage&isappinstalled=0\">第77届中国医疗器械博览会邀请函</a>");
          }
         if (in_array($message->Content, array('产品'))) {
@@ -88,7 +88,9 @@ class Wechat
             $openId = $event['FromUserName'];
             $customer = Customer::where('openid', $openId)->first();
             if ($customer) {
-                return Message::make('text')->content('欢迎您回来!');
+
+                return Message::make('text')->content("欢迎关注药械通！\n\n回复“产品”查看优质药械产品详情 \n\n回复“历史”查看历史咨询\n\n回复“邀请函”查看第77届中国医疗器械博览会邀请函");
+                //return Message::make('text')->content('欢迎您回来!');
             }
             return Message::make('text')->content("欢迎关注药械通！\n\n回复“产品”查看优质药械产品详情 \n\n回复“历史”查看历史咨询\n\n回复“邀请函”查看第77届中国医疗器械博览会邀请函");
            // return Message::make('text')->content('嗨!欢迎关注药械通!');
