@@ -14,6 +14,15 @@ body {
 .m-bottom{
     margin-bottom: 8px;
 }
+.text-left{
+    text-align: left;
+}
+.text-center{
+    text-align: center;
+}
+.text-right{
+    text-align: right;
+}
 .text-danger {
     color: #FF0B33;
 }
@@ -440,4 +449,7 @@ body {
     text-align: center;
     white-space: normal;
     font-weight: 100;
+}
+.apply .layui-m-layercont {
+    padding: 20px;
 }

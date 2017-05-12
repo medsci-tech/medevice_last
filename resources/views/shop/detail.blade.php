@@ -32,11 +32,11 @@
         </div>
         <div class="swiper-pagination"></div>
     </div>
-    <div class="product-info ui-border-b ui-border-t">
+    <div class="product-info">
         <div class="product-title">{{$data->name}}</div>
         <div class="product-prices">零售价格：<em>{{$data->price}}</em></div>
     </div>
-    <div class="product-cell">
+    <div class="product-cell ui-border-t">
         <a href="/shop/info?id={{$data->id}}">
             产品参数
         </a>
@@ -55,8 +55,7 @@
                 </div>
             </div>
             <div class="details-list">
-                <h5 class="explain">※ 请仔细阅读的作用说明，并在药师指导下购买和使用,这里是招商说明</h5>
-                {!! $data->description !!}
+                <h5 class="explain">{!! $data->description !!}</h5>
             </div>
             <div class="details-list">
                 <!-- 视频加载 -->
@@ -88,38 +87,11 @@
     </div>
     <div class="together-footer">
         <div class="together-box">
-            <div class="together" onclick="javascript:showOrderDia()">我要合作</div>
-            <div class="mark @if ($is_collect == 1)active @endif"><!--active为已收藏状态，反之-->
+            <div class="together" onclick="javascript:showOrderDia({{$data->id}})">我要合作</div>
+            <div class="mark @if ($is_collect == 1)active @endif" onclick="add_like({{$data->id}},this)"><!--active为已收藏状态，反之-->
                 <i></i>
-                收藏
+                <span>@if ($is_collect == 1)已收藏@else收藏 @endif</span>
             </div>
-        </div>
-    </div>
-
-    <div class="ui-dialog" id="create">
-        <div class="ui-dialog-cnt">
-            <header class="ui-dialog-hd ui-border-b">
-                <h3>完成申请</h3>
-                <i class="ui-dialog-close" data-role="button" onclick="closeOrderDia()"></i>
-            </header>
-            <form action="#" style="padding: 5px">
-                <div class="ui-form-item ui-form-item-pure ui-border-radius ui-form dialog-top">
-                    <input type="text" placeholder="请输入姓名" name="name" id="name">
-                </div>
-                <div class="ui-form-item ui-form-item-pure ui-border-radius ui-form dialog-top">
-                    <input type="text" placeholder="请输入联系电话" name="phone" id="phone">
-                </div>
-
-                    <input type="checkbox" name="join_type" value="1"><span>代理产品</span>
-                    <input type="checkbox" name="join_type" value="2"><span>提供学术服务</span>
-                    <input type="checkbox" name="join_type" value="3"><span>其他</span>
-
-
-                <div class="ui-dialog-ft">
-                    <button type="button" data-role="button" onclick="store({{$data->id}})">申请</button>
-                    <button type="button" data-role="button" onclick="closeOrderDia()">取消</button>
-                </div>
-            </form>
         </div>
     </div>
 </section>
@@ -128,59 +100,92 @@
 <script src="{{asset('/js/swiper-3.4.2.jquery.min.js')}}"></script>
 
 <script>
-    function showDia(success, title, content) {
-        $("#dia_title").text(title);
-        $("#dia_content").text(content);
-        if(success) {
-            $("#icon").removeClass().addClass("ui-icon-success success_dia");
-        } else {
-            $("#icon").removeClass().addClass("ui-icon-success ui-txt-warning");
-        }
-        document.getElementById("dialog").style.display = "-webkit-box";
-    }
-    function closeDia() {
-        document.getElementById("dialog").style.display = "none";
-    }
-
-    function showOrderDia() {
-        document.getElementById("create").style.display = "-webkit-box";
-    }
-    function closeOrderDia() {
-        document.getElementById("create").style.display = "none";
-    }
-    function store(product_id) {
-        real_name =  document.getElementById("name").value;
-        contact_phone =  document.getElementById("phone").value;
-        var obj=document.getElementsByName('join_type'); //选择所有name="'test'"的对象，返回数组
-//取到对象数组后，我们来循环检测它是不是被选中
-        var s='';
-        for(var i=0; i<obj.length; i++){
-            if(obj[i].checked) s+=obj[i].value+','; //如果选中，将value添加到变量s中
-        }
-        str=s.substring(0,s.length-1)
-
-        $.ajax({
-            url: '/shop/create-order',
-            data: {
-                product_id: product_id,
-                real_name: real_name,
-                contact_phone: contact_phone,
-                join_type: str,
-            },
-            type: "get",
-            dataType: "json",
-            success: function (json) {
-                if(json.success) {
-                    alert('申请成功', '合作申请提交成功,我们将会在两个工作日内与您联系！');
-                    closeOrderDia();
-                    showDia(true, '申请成功', '合作申请提交成功,我们将会在两个工作日内与您联系！');
-                } else {
-                    showDia(true, '申请失败', '申请失败,请重试！');
+    function showOrderDia(product_id) {
+        var html = '<div class="ui-form">'+
+            '<form action="#">'+
+                '<div class="ui-form-item ui-form-item-pure ui-border-radius ui-form">'+
+                    '<input type="text" placeholder="请输入姓名" name="name" id="name">'+
+                '</div>'+
+                '<div class="ui-form-item ui-form-item-pure ui-border-radius ui-form m-top">'+
+                    '<input type="text" placeholder="请输入联系电话" name="phone" id="phone">'+
+                '</div>'+
+                '<div class="m-top">'+
+                    '<ul class="ui-list ui-list-text ui-list-checkbox">'+
+                        '<div class="text-left m-top">'+
+                            '<label class="ui-checkbox">'+
+                                '<input type="checkbox" name="join_type" value="1">'+
+                            '</label>'+
+                            '<span>代理产品</span>'+
+                        '</div>'+
+                        '<div class="text-left m-top">'+
+                            '<label class="ui-checkbox">'+
+                                '<input type="checkbox" name="join_type" value="2">'+
+                            '</label>'+
+                            '<span>提供学术服务</span>'+
+                        '</div>'+
+                        '<div class="text-left m-top">'+
+                            '<label class="ui-checkbox">'+
+                                '<input type="checkbox" name="join_type" value="3">'+
+                            '</label>'+
+                            '<span>其他</span>'+
+                        '</div>'+
+                    '</ul>'+
+                '</div>'+
+            '</form>'+
+        '</div>'
+        layer.open({
+            content: html
+            ,className:'apply'
+            ,btn: ['申请', '取消']
+            ,success: function(){
+                $('.ui-checkbox').click(function(){
+                    $(this).find('input').attr("checked", true)
+                })
+            }
+            ,yes: function(index){
+                var obj=document.getElementsByName('join_type'),
+                real_name =  document.getElementById("name").value,
+                contact_phone =  document.getElementById("phone").value;
+                var s='';
+                for(var i=0; i<obj.length; i++){
+                    if(obj[i].checked) s+=obj[i].value+','; //如果选中，将value添加到变量s中
                 }
-            },
-            error: function (xhr, status, errorThrown) {
-                showDia(true, '申请失败', '申请失败,请重试！');
-                console.log("Sorry, there was a problem!");
+                var str=s.substring(0,s.length-1);
+                $.ajax({
+                    url: '/shop/create-order',
+                    data: {
+                        product_id: product_id,
+                        real_name: real_name,
+                        contact_phone: contact_phone,
+                        join_type: str,
+                    },
+                    type: "get",
+                    dataType: "json",
+                    success: function (json) {
+                        if(json.success) {
+                            layer.open({
+                                content: "申请提交成功,我们将会在两个工作日内与您联系！"
+                                ,skin: 'msg'
+                                ,time: 2
+                            });
+                            layer.close(index);
+                        } else {
+                            layer.open({
+                                content: "申请失败,请重试！"
+                                ,skin: 'msg'
+                                ,time: 2
+                            });
+                        }
+                    },
+                    error: function (xhr, status, errorThrown) {
+                        layer.open({
+                            content: "申请失败,请重试！"
+                            ,skin: 'msg'
+                            ,time: 2
+                        });
+                        console.log("Sorry, there was a problem!");
+                    }
+                });
             }
         });
     }
@@ -223,31 +228,41 @@
         }
     });
 
-    function add_like(id) {
+    function add_like(id,e) {
+        var action;
+        $(e).hasClass('active') ? action = 0:action=1;
         $.ajax({
-            type: "POST",
             url:"/shop/collect",
-            data: {product_id:id},
+            type: "POST",
+            data: {product_id:id,action:action},
             dataType: "json",
             success: function(json){
-                if(json.code == 200){
-                    layer.open({
-                        content: json.message
-                        ,skin: 'msg'
-                        ,time: 2
-                    });
+                if(json.status == 1){
+                    if(action == 1){
+                        $(e).find('span').text('已收藏');
+                        $(e).addClass('active');
+                    }else if(action == 0){
+                        $(e).find('span').text('收藏');
+                        $(e).removeClass('active');
+                    }
                 }
             }
         });
     }
+    $('.product-imgs img').each(function(){
+        $(this).css({
+            "width":"100%",
+            "height":"auto"
+        })
+    })
 </script>
 
 <script src="//qzonestyle.gtimg.cn/open/qcloud/video/h5/h5connect.js"></script>
 <script>
     (function(){
-                @if($data->videos)
-                @foreach($data->videos as $key=> $video)
-        var option_{{ $key }} ={"auto_play":"0","file_id":"{{ $video->qcloud_file_id }}","app_id":"{{ $video->qcloud_app_id }}","width":180,"https":1, "remember": 1};
+        @if($data->videos)
+        @foreach($data->videos as $key=> $video)
+        var option_{{ $key }} ={"auto_play":"0","file_id":"{{ $video->qcloud_file_id }}","app_id":"{{ $video->qcloud_app_id }}","height":180,"https":1, "remember": 1};
         /*调用播放器进行播放*/
         new qcVideo.Player( "id_video_container_{{ $key }}", option_{{ $key }});
         @endforeach
