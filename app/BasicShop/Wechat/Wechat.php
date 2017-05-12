@@ -77,7 +77,7 @@ class Wechat
         if (in_array($message->Content, array('历史','历史记录'))) {
             return Message::make('text')->content("<a target=\"_blank\" href=\"https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzAwMTc3MDY4NA==&scene=124\">查看历史咨询</a>");
         }
-  
+
         };
     }
 

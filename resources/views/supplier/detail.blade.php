@@ -22,7 +22,7 @@
             <li class="ui-border-t">
                 <p class="ui-nowrap ui-txt-sub ui-txt-info">{{$product->name}}</p>
 
-                <div class="ui-txt-info ui-txt-sub"><a href="/shop/detail?id={{$product->id}}">查看</a></div>
+                {{--<div class="ui-txt-info ui-txt-sub"><a href="/shop/detail?id={{$product->id}}">查看</a></div>--}}
             </li>
         @endforeach
     </ul>
