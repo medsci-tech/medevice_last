@@ -90,7 +90,7 @@ class RegisterController extends Controller
         }
 
         $result = \MessageSender::checkVerify($request->input('phone'), $request->input('code'));
-        if (!$result) {
+        if ($result) {
             $user = \Helper::getUser();
             $customer = Customer::where(['phone'=>$request->input('phone')])->first();
             if($customer) // 存在用户
