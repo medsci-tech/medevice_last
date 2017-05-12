@@ -10,13 +10,14 @@ use App\Models\ProductCategory;
 use App\Models\ProductVideo;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-
+use App\Http\Requests\Interfaces\CheckCollection;
 /**
  * Class ShopController
  * @package App\Http\Controllers\Shop
  */
 class ShopController extends Controller
 {
+    use CheckCollection;
     public function __construct()
     {
         //$this->middleware('wechat');
@@ -120,27 +121,26 @@ class ShopController extends Controller
         Order::where('id', $request->input('id'))->where('customer_id', $customer->id)->delete();
         return response()->json(['success' => true]);
     }
-
     /**
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * 产品收藏
+     * @author      lxhui<772932587@qq.com>
+     * @since 1.0
+     * @return array
      */
     public function collect(Request $request)
     {
-        $productID = $request->input('product_id');
-        $customer = \Helper::getCustomer();
-        \DB::transaction(function () use ($productID, $customer) {
-            $product = Product::find($productID);
-            $product->fans += 1;
-            $product->save();
-
-            $collection = new ProductCollection();
-            $collection->product_id = $productID;
-            $collection->customer_id = $customer->id;
-            $collection->save();
-        });
-        return response()->json(['success' => true]);
+        try {
+            $res =$this->checkCollection($request->all());
+            if($res['status']==1)
+                return ['code'=>200, 'status' => 1,'message' => '操作成功!' ];
+            else
+                return ['code'=>200, 'status' => 0,'message' =>$res['message'] ];
+        }
+        catch (\Exception $e) {
+            return ['code' => 200, 'status' => 0, 'message' => $e->getMessage()];
+        }
     }
+
 
     /**
      * @param Request $request

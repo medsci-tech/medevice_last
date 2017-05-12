@@ -64,7 +64,7 @@
                         <div  class="video" id="id_video_container_{{ $key }}" style="width:100%;height:400px;"></div>
                     @endforeach
                 @endif
-                
+
             </div>
             <div class="details-list">
                 <div class="product-list">
