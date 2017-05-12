@@ -88,7 +88,7 @@
     <div class="together-footer">
         <div class="together-box">
             <div class="together">我要合作</div>
-            <div class="mark" onclick="add_like({{$data->id}})">
+            <div class="mark active"><!--active为已收藏状态，反之-->
                 <i></i>
                 收藏
             </div>
@@ -135,23 +135,6 @@
             return scrollPos;
         }
     });
-	
-	function add_like(id) {
-    $.ajax({
-        type: "POST",
-		url:"/shop/collect",
-        data: {product_id:id},
-        dataType: "json",
-        success: function(json){
-            if(json.code == 200){
-				layer.open({
-                    content: json.message
-                    ,skin: 'msg'
-                    ,time: 2
-                });
-            }
-        }
-    });
 }
 </script>
 
@@ -160,7 +143,7 @@
     (function(){
                 @if($data->videos)
                 @foreach($data->videos as $key=> $video)
-        var option_{{ $key }} ={"auto_play":"0","file_id":"{{ $video->qcloud_file_id }}","app_id":"{{ $video->qcloud_app_id }}","https":1, "remember": 1};
+        var option_{{ $key }} ={"auto_play":"0","file_id":"{{ $video->qcloud_file_id }}","app_id":"{{ $video->qcloud_app_id }}","width":180,"https":1, "remember": 1};
         /*调用播放器进行播放*/
         new qcVideo.Player( "id_video_container_{{ $key }}", option_{{ $key }});
         @endforeach
