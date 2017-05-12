@@ -20,36 +20,32 @@
 
             <div class="ui-txt-info">{{$customer->phone}}</div>
         </li>
-        <li class="ui-border-t">
-            <h4 class="ui-nowrap">用户类型</h4>
 
-            <div class="ui-txt-info">{{$customer->type->type_ch}}</div>
-        </li>
     </ul>
 
-    <a href="/personal/order-list">
-        <ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">
-            <li class="ui-border-t">
-                <h4>我的订单</h4>
-            </li>
-        </ul>
-    </a>
+    {{--<a href="/personal/order-list">--}}
+        {{--<ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">--}}
+            {{--<li class="ui-border-t">--}}
+                {{--<h4>我的订单</h4>--}}
+            {{--</li>--}}
+        {{--</ul>--}}
+    {{--</a>--}}
 
-    <a href="/personal/collection-list">
-        <ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">
-            <li class="ui-border-t">
-                <h4>收藏商品</h4>
-            </li>
-        </ul>
-    </a>
+    {{--<a href="/personal/collection-list">--}}
+        {{--<ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">--}}
+            {{--<li class="ui-border-t">--}}
+                {{--<h4>收藏商品</h4>--}}
+            {{--</li>--}}
+        {{--</ul>--}}
+    {{--</a>--}}
 
-    <a href="/personal/attention-list">
-        <ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">
-            <li class="ui-border-t">
-                <h4>关注厂家</h4>
-            </li>
-        </ul>
-    </a>
+    {{--<a href="/personal/attention-list">--}}
+        {{--<ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">--}}
+            {{--<li class="ui-border-t">--}}
+                {{--<h4>关注厂家</h4>--}}
+            {{--</li>--}}
+        {{--</ul>--}}
+    {{--</a>--}}
 
     {{--<ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">--}}
     {{--<li class="ui-border-t">--}}
