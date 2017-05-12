@@ -127,7 +127,6 @@
 <script src="{{asset('/js/layer.js')}}"></script>
 <script src="{{asset('/js/swiper-3.4.2.jquery.min.js')}}"></script>
 
-<script src="{{asset('/js/frozen.js')}}"></script>
 <script>
     function showDia(success, title, content) {
         $("#dia_title").text(title);
@@ -187,14 +186,13 @@
     }
 </script>
 <script>
-
     var mySwiper = new Swiper ('.swiper-container', {
         pagination: '.swiper-pagination',
     })
     $(document).ready(function() {
         var widget = $('.product-details-box');
         var tabs = widget.find('ul li'),
-                content = widget.find('.details-cont > .details-list');
+            content = widget.find('.details-cont > .details-list');
         tabs.on('click', function (e) {
             e.preventDefault();
             var index = $(this).data('index');
@@ -224,7 +222,24 @@
             return scrollPos;
         }
     });
-}
+
+    function add_like(id) {
+        $.ajax({
+            type: "POST",
+            url:"/shop/collect",
+            data: {product_id:id},
+            dataType: "json",
+            success: function(json){
+                if(json.code == 200){
+                    layer.open({
+                        content: json.message
+                        ,skin: 'msg'
+                        ,time: 2
+                    });
+                }
+            }
+        });
+    }
 </script>
 
 <script src="//qzonestyle.gtimg.cn/open/qcloud/video/h5/h5connect.js"></script>
