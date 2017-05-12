@@ -172,6 +172,7 @@
             dataType: "json",
             success: function (json) {
                 if(json.success) {
+                    alert('申请成功', '合作申请提交成功,我们将会在两个工作日内与您联系！');
                     closeOrderDia();
                     showDia(true, '申请成功', '合作申请提交成功,我们将会在两个工作日内与您联系！');
                 } else {
