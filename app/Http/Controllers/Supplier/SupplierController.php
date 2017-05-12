@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Supplier;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Models\Supplier;
 use App\Http\Requests;
 use App\Models\SupplierAttention;
@@ -35,6 +36,7 @@ class SupplierController extends Controller
     public function detail(Request $request)
     {
         $customer = \Helper::getCustomer();
+
         return view('supplier.detail', [
             'supplier' => Supplier::find($request->input('id')),
             'attention' => SupplierAttention::where('supplier_id', $request->input('id'))->where('customer_id', $customer->id)->get()->toArray() ? true : false

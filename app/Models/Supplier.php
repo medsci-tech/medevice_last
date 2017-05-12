@@ -20,6 +20,6 @@ class Supplier extends Model
      */
     public function products()
     {
-        return $this->hasMany('App\Models\Product', 'supplier_id');
+        return $this->hasMany('App\Models\Products', 'supplier_id');
     }
 }
