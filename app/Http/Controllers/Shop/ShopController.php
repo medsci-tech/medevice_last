@@ -56,8 +56,8 @@ class ShopController extends Controller
     public function detail(Request $request)
     {
         try {
-            //$customer = \Helper::getCustomer();
-            $customer = \App\Models\Customer::find(3);//测试
+            $customer = \Helper::getCustomer();
+            //$customer = \App\Models\Customer::find(3);//测试
             $id = $request->input('id');
             $data = Product::find($id);
             if($data)
