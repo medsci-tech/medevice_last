@@ -262,7 +262,7 @@
     (function(){
         @if($data->videos)
         @foreach($data->videos as $key=> $video)
-        var option_{{ $key }} ={"auto_play":"0","file_id":"{{ $video->qcloud_file_id }}","app_id":"{{ $video->qcloud_app_id }}","height":180,"https":1, "remember": 1};
+        var option_{{ $key }} ={"auto_play":"0","file_id":"{{ $video->qcloud_file_id }}","app_id":"{{ $video->qcloud_app_id }}","width":"100%","height":"180px","https":1, "remember": 1};
         /*调用播放器进行播放*/
         new qcVideo.Player( "id_video_container_{{ $key }}", option_{{ $key }});
         @endforeach
