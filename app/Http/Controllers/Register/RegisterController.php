@@ -28,9 +28,45 @@ class RegisterController extends Controller
      */
     public function create()
     {
+        return view('register.next', ['phone' => 12122,'openid'=>344444]);//测试
         return view('register.create');
     }
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function next(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            $messages = array(
+                'name.required' => '用户名不能为空',
+                'name.unique' => '该用户名已经被注册',
+                'confirmed' => '两次输入的密码不一致',
+            );
+            $validator = \Validator::make($request->all(), [
+                'name' => 'required|unique:users,name',
+                'password' => 'required|min:6|max:12|confirmed',
+                'password_confirmation' => 'required|min:6|',
+            ], $messages);
+            if ($validator->fails()) {
+                $validator_error_first = $validator->errors()->first();
+                return response()->json(['code'=>200, 'status' => 0,'message' => $validator_error_first ]);
+            }
 
+            $user = \Helper::getUser();
+
+            $customer = new Customer();
+            $customer->name = $request->input('name');
+            $customer->phone = $request->input('phone');
+            $customer->openid = $user['openid'];
+            $customer->password = bcrypt($request->input('password'));
+            $customer->nickname = $user['nickname'];
+            $customer->head_image_url = $user['headimgurl'];
+            $customer->save();
+            return response()->json(['code'=>200, 'status' => 1,'message' =>'注册成功!' ]);
+        }
+        return view('register.next');
+    }
 
     /**
      * @param Request $request
@@ -47,7 +83,7 @@ class RegisterController extends Controller
             'code.digits' => '验证码格式不正确'
         );
         $validator = \Validator::make($request->all(), [
-            'phone' => 'required|digits:11|unique:customers,phone',
+            'phone' => 'required|digits:11',
             'code' => 'required|digits:6',
         ], $messages);
         if ($validator->fails()) {
@@ -56,17 +92,16 @@ class RegisterController extends Controller
         $result = \MessageSender::checkVerify($request->input('phone'), $request->input('code'));
         if ($result) {
             $user = \Helper::getUser();
-            $customer = new Customer();
-            $customer->phone = $request->input('phone');
-            $customer->type_id = 1;
-            $customer->openid = $user['openid'];
-            //$customer->nickname = $user['nickname'];
-            //$customer->head_image_url = $user['headimgurl'];
-            $customer->save();
-            $appId = env('WX_APPID');
-            $secret = env('WX_SECRET');
-            $js = new Js($appId, $secret);
-            return view('register.success', ['js' => $js]);
+            $customer = Customer::where(['phone'=>$request->input('phone')])->first();
+            if($customer) // 存在用户
+            {
+                if(!$customer->openid)
+                    Customer::where('active', 1)->update(['openid' => $user['openid'],'nickname'=>$user['nickname'],'head_image_url'=>$user['headimgurl']]);
+                return redirect(getenv("HTTP_REFERER"));//跳转到首页
+            }
+            else //注册新用户
+                return view('register.next', ['phone' => $request->input('phone'),'openid'=>$user['openid']]);
+
         } else {
             $validator->errors()->add('code', '验证码错误');
             return view('register.create', ['errors' => $validator->errors(), 'input' => $request->all()]);

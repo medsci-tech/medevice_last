@@ -17,12 +17,11 @@ class ApplyController extends Controller
     public function index(Request $request)
     {
         if ($request->isMethod('post')) {
-            $data = $request->all();                Apply::firstOrCreate($data);
-            return response()->json(['code'=>200, 'status' => 1,'message' => '登记成功' ]);
+            $data = $request->all();
             try {
-                if($data['real_name'==''])
+                if($data['real_name']=='')
                     return response()->json(['code' => 200, 'status' => 0, 'message' => '姓名不能为空!']);
-                if($data['phone'==''])
+                if($data['phone']=='')
                     return response()->json(['code' => 200, 'status' => 0, 'message' => '联系电话不能为空!']);
 
                 Apply::firstOrCreate($data);

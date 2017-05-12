@@ -18,7 +18,7 @@ class AccessMiddleware
     {
         $user = \Helper::getSessionCachedUser();
         $customer = Customer::where('openid', $user['openid'])->first();
-        if ($customer && $customer->phone) {
+        if ($customer && $customer->phone && $customer->password) {
             return $next($request);
         } else {
             return redirect('/register/create');

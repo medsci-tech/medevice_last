@@ -88,7 +88,7 @@
     <div class="together-footer">
         <div class="together-box">
             <div class="together">我要合作</div>
-            <div class="mark">
+            <div class="@if ($is_collect == 1) mark @endif">
                 <i></i>
                 收藏
             </div>
