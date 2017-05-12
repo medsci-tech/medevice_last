@@ -20,7 +20,7 @@ class RegisterController extends Controller
      */
     function __construct()
     {
-        //$this->middleware('wechat');
+        $this->middleware('wechat');
     }
 
     /**

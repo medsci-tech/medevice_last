@@ -88,7 +88,7 @@
     <div class="together-footer">
         <div class="together-box">
             <div class="together">我要合作</div>
-            <div class="mark active"><!--active为已收藏状态，反之-->
+            <div class="mark @if ($is_collect == 1)active @endif"><!--active为已收藏状态，反之-->
                 <i></i>
                 收藏
             </div>

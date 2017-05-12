@@ -20,8 +20,8 @@ class ShopController extends Controller
     use CheckCollection;
     public function __construct()
     {
-        //$this->middleware('wechat');
-        //$this->middleware('access');
+        $this->middleware('wechat');
+        $this->middleware('access');
     }
 
     /**
@@ -54,8 +54,8 @@ class ShopController extends Controller
     public function detail(Request $request)
     {
         try {
-            //$customer = \Helper::getCustomer();
-            $customer = \App\Models\Customer::find(3);
+            $customer = \Helper::getCustomer();
+            //$customer = \App\Models\Customer::find(3);//测试
             $id = $request->input('id');
             $data = Product::find($id);
             if($data)
