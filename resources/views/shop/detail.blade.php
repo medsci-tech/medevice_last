@@ -21,24 +21,19 @@
     <!-- 商品图片轮播 -->
     <div class="product-slide swiper-container">
         <div class="swiper-wrapper">
+            @if($data->banners)
+                @foreach($data->banners as $banner)
             <div class="swiper-slide">
-                <img src="http://oocc7psxo.bkt.clouddn.com/52d971f67b2a427a1ec80fbd76763d36.jpg?imageView2/1/w/450/h/450/q/90">
+                <img src="{{ $banner->image_url }}?imageView2/1/w/450/h/450/q/90">
             </div>
-            <div class="swiper-slide">
-                <img src="http://oocc7psxo.bkt.clouddn.com/c56477085c1f86885bab858d3cf1fdce.jpg?imageView2/1/w/450/h/450/q/90">
-            </div>
-            <div class="swiper-slide">
-                <img src="http://oocc7psxo.bkt.clouddn.com/62debb3bfa8da6af2ac6b8ff4efbe2cd.jpg?imageView2/1/w/450/h/450/q/90">
-            </div>
-            <div class="swiper-slide">
-                <img src="http://oocc7psxo.bkt.clouddn.com/52d971f67b2a427a1ec80fbd76763d36.jpg?imageView2/1/w/450/h/450/q/90">
-            </div>
+                @endforeach
+            @endif
         </div>
         <div class="swiper-pagination"></div>
     </div>
     <div class="product-info ui-border-b ui-border-t">
-        <div class="product-title">谷幽兰复合维生素BB霜</div>
-        <div class="product-prices">零售价格：<em>￥97.00</em></div>
+        <div class="product-title">{{$data->name}}</div>
+        <div class="product-prices">零售价格：<em>{{$data->price}}</em></div>
     </div>
     <div class="product-cell">
         <a href="">
@@ -55,18 +50,7 @@
         <div class="details-cont">
             <div class="details-list tab-content-active">
                 <div class="product-imgs">
-                    <img src="http://7xso2p.com1.z0.glb.clouddn.com/%E8%AF%BA%E5%92%8C%E7%AC%94-001.jpg" title="" alt=""><img
-                            src="http://7xso2p.com1.z0.glb.clouddn.com/%E8%AF%BA%E5%92%8C%E7%AC%94-002.jpg"  title="" alt=""><img
-                            src="http://7xso2p.com1.z0.glb.clouddn.com/%E8%AF%BA%E5%92%8C%E7%AC%94-003.jpg"  title="" alt=""><img
-                            src="http://7xso2p.com1.z0.glb.clouddn.com/%E8%AF%BA%E5%92%8C%E7%AC%94-004.jpg"  title="" alt=""><img
-                            src="http://7xso2p.com1.z0.glb.clouddn.com/%E8%AF%BA%E5%92%8C%E7%AC%94-005.jpg"  title="" alt=""><img
-                            src="http://7xso2p.com1.z0.glb.clouddn.com/%E8%AF%BA%E5%92%8C%E7%AC%94-006.jpg"  title="" alt=""><img
-                            src="http://7xso2p.com1.z0.glb.clouddn.com/%E8%AF%BA%E5%92%8C%E7%AC%94-007.jpg"  title="" alt=""><img
-                            src="http://7xso2p.com1.z0.glb.clouddn.com/%E8%AF%BA%E5%92%8C%E7%AC%94-008.jpg"  title="" alt=""><img
-                            src="http://7xso2p.com1.z0.glb.clouddn.com/%E8%AF%BA%E5%92%8C%E7%AC%94-009.jpg"  title="" alt=""><img
-                            src="http://7xso2p.com1.z0.glb.clouddn.com/%E8%AF%BA%E5%92%8C%E7%AC%94-010.jpg"  title="" alt=""><img
-                            src="http://7xso2p.com1.z0.glb.clouddn.com/%E8%AF%BA%E5%92%8C%E7%AC%94-011.jpg"  title="" alt=""><img
-                            src="http://7xso2p.com1.z0.glb.clouddn.com/%E8%AF%BA%E5%92%8C%E7%AC%94-012.jpg"  title="" alt="">
+                    {!! $data->detail !!}
                 </div>
             </div>
             <div class="details-list">

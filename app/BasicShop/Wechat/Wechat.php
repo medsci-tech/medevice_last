@@ -68,6 +68,15 @@ class Wechat
 
     public function messageEventCallback() {
         return function ($message) {
+            if (in_array($message->Content, array('邀请函','邀请'))) {
+                return Message::make('text')->content("<a target=\"_blank\" href=\"http://g.eqxiu.com/s/948fHP3Q?eqrcode=1&from=singlemessage&isappinstalled=0\">第77届中国医疗器械博览会邀请函</a>");
+         }
+        if (in_array($message->Content, array('产品'))) {
+            return Message::make('text')->content("<a target=\"_blank\" href=\"http://medevice-tech.com/shop\">查看优质药械产品详情</a>");
+        }
+        if (in_array($message->Content, array('历史'))) {
+            return Message::make('text')->content("<a target=\"_blank\" href=\"https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzAwMTc3MDY4NA==&scene=124\">查看历史咨询</a>");
+        }
             return Message::make('text')->content('您好!');
         };
     }
@@ -81,8 +90,8 @@ class Wechat
             if ($customer) {
                 return Message::make('text')->content('欢迎您回来!');
             }
-
-            return Message::make('text')->content('嗨!欢迎关注药械通!');
+            return Message::make('text')->content("欢迎关注药械通！\n\n回复“产品”查看优质药械产品详情 \n\n回复“历史”查看历史咨询\n\n回复“邀请函”查看第77届中国医疗器械博览会邀请函");
+           // return Message::make('text')->content('嗨!欢迎关注药械通!');
         };
     }
 

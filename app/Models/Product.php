@@ -27,6 +27,10 @@ class Product extends Model
     {
         return $this->belongsTo('App\Models\Supplier', 'supplier_id');
     }
+    public function banners()
+    {
+        return $this->hasMany(ProductBanner::class);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

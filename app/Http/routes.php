@@ -19,6 +19,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::any('/agreement', function () {
             return view('register.agreement');
         });
+        Route::any('/next', 'RegisterController@next');
     });
 
     Route::group(['prefix' => 'shop', 'namespace' => 'Shop'], function () {

@@ -106,7 +106,8 @@
                         ,skin: 'msg'
                         ,time: 3
                     });
-                    $('#addForm')[0].reset()
+                    window.location.href='/apply/success';
+                    //$('#addForm')[0].reset()
                 }
             },
         });

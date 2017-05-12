@@ -25,7 +25,7 @@
             <p>长按下方二维码识别</p>
             <p>关注药械通公众号了解更多信息</p>
             <p>
-                <img style="width: 150px; height: 150px;" src="/images/qr_code.jpg">
+                <img style="width: 300px; height: 300px;" src="/images/qr_code.jpg">
             </p>
         </section>
     </div>
