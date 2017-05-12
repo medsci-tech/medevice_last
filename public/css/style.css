@@ -221,6 +221,15 @@ body {
     margin: 0 auto;
     margin-top: 3px;
 }
+.together-footer .together-box .active i{
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: url(../images/mark_active.png) no-repeat;
+    background-size: 20px;
+    margin: 0 auto;
+    margin-top: 3px;
+}
 
 .product-list{
     background: #fff;
