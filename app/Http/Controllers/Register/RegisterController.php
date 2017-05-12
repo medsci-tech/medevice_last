@@ -98,7 +98,7 @@ class RegisterController extends Controller
                 if(!$customer->openid)
                     Customer::where(['phone'=>$request->input('phone')])->update(['openid' => $user['openid'],'nickname'=>$user['nickname'],'head_image_url'=>$user['headimgurl']]);
 
-                return redirect(getenv("HTTP_REFERER"));
+                return redirect('/shop');
             }
             else //注册新用户
                 return view('register.next', ['phone' => $request->input('phone'),'openid'=>$user['openid']]);

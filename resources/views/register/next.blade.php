@@ -97,7 +97,8 @@
                         ,skin: 'msg'
                         ,time: 3
                     });
-                   window.location.href=document.referrer;
+                    window.location.href='/shop';
+                   //window.location.href=document.referrer;
                     //$('#addForm')[0].reset()
                 }
             },
