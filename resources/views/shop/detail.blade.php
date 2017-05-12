@@ -55,28 +55,31 @@
             </div>
             <div class="details-list">
                 <h5 class="explain">※ 请仔细阅读的作用说明，并在药师指导下购买和使用,这里是招商说明</h5>
+                {!! $data->description !!}
             </div>
             <div class="details-list">
-                <div class="video">
-                    视频
-                </div>
-                <div class="video">
-                    视频
-                </div>
+                <!-- 视频加载 -->
+                @if($data->videos)
+                    @foreach($data->videos as $key=>$video)
+                        <div  class="video" id="id_video_container_{{ $key }}" style="width:100%;height:400px;"></div>
+                    @endforeach
+                @endif
+                
             </div>
             <div class="details-list">
                 <div class="product-list">
                     <ul>
-                        <li>
-                            <img src="http://oocc7psxo.bkt.clouddn.com/62f0acd40d5f4c870fc67c1ac0fa6016.jpg?imageView2/1/w/220/h/220/q/90" alt="">
-                            <p class="price">零售价格：<em>￥99.99</em></p>
-                            <p class="title">诺和笔5® 胰岛素笔试数显注射器</p>
-                        </li>
-                        <li>
-                            <img src="http://oocc7psxo.bkt.clouddn.com/62f0acd40d5f4c870fc67c1ac0fa6016.jpg?imageView2/1/w/220/h/220/q/90" alt="">
-                            <p class="price">零售价格：<em>￥99.99</em></p>
-                            <p class="title">诺和笔5® 胰岛素笔试数显注射器</p>
-                        </li>
+
+                        @if($data_similar)
+                            @foreach ($data_similar as $val)
+                                <li>
+                                    <a href="{{ url('product/detail/'.$val->id) }}" target="_blank"><img src="{{ $val->logo }}?imageView2/1/w/220/h/220/q/90" alt=""></a>
+                                    <p class="price">零售价格：<em>{{ $val->price }}</em></p>
+                                    <p class="title">{{ $val->name }}</p>
+                                </li>
+                            @endforeach
+                        @endif
+
                     </ul>
                 </div>
             </div>
@@ -132,5 +135,19 @@
         }
     });
 </script>
+
+<script src="//qzonestyle.gtimg.cn/open/qcloud/video/h5/h5connect.js"></script>
+<script>
+    (function(){
+                @if($data->videos)
+                @foreach($data->videos as $key=> $video)
+        var option_{{ $key }} ={"auto_play":"0","file_id":"{{ $video->qcloud_file_id }}","app_id":"{{ $video->qcloud_app_id }}","width":1024,"height":576,"https":1, "remember": 1};
+        /*调用播放器进行播放*/
+        new qcVideo.Player( "id_video_container_{{ $key }}", option_{{ $key }});
+        @endforeach
+        @endif
+    })()
+</script>
+
 </body>
 </html>
