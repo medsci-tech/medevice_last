@@ -19,7 +19,7 @@
             </li>
             <li class="ui-border-t">
                 <div class="ui-list-thumb">
-                    <span style="background-image:url({{$collection->product->logo_image_url}})"></span>
+                    <span style="background-image:url({{$collection->product->logo}}?imageView2/1/w/65/h/65/q/90)"></span>
                 </div>
                 <div class="ui-list-info">
                     <a href="/shop/detail?id={{$collection->product->id}}">

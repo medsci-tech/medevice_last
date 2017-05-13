@@ -154,11 +154,11 @@ class ShopController extends Controller
         $productID = $request->input('product_id');
         $customer = \Helper::getCustomer();
         \DB::transaction(function () use ($productID, $customer) {
-            $product = Product::find($productID);
-            $product->fans -= 1;
-            $product->save();
+//            $product = Product::find($productID);
+//            $product->fans -= 1;
+//            $product->save();
 
-            ProductCollection::where('product_id', $productID)->where('customer_id', $customer->id)->delete();
+            Collection::where('product_id', $productID)->where('user_id', $customer->id)->delete();
         });
         return response()->json(['success' => true]);
     }
