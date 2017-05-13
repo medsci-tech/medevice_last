@@ -23,7 +23,7 @@
                 </div>
                 <div class="ui-list-info">
                     <a href="/shop/detail?id={{$collection->product->id}}">
-                        <h5 class="ui-nowrap">{{$collection->product->introduction}}</h5>
+                        <h5 class="ui-nowrap">{{$collection->product->price}}</h5>
 
                         <p class="ui-nowrap ui-txt-info">时间：{{$collection->created_at}}</p>
                     </a>
