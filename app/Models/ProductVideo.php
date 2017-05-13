@@ -14,7 +14,7 @@ class ProductVideo extends Model
     /**
      * @var string
      */
-    protected $table = 'product_videos';
+    protected $table = 'product_videoss';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
