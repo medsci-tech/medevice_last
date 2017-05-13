@@ -30,6 +30,12 @@ class Collection extends Model
     {
         return $this->belongsToMany(\App\Models\Product::class, 'collections', 'id', 'product_id');
     }
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function product()
+    {
+        return $this->belongsTo('App\Models\Product', 'product_id');
+    }
 
 }
