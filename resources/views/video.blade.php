@@ -11,7 +11,7 @@
 @foreach($videos as $video)
         <div class="panel panel-default">
             <div class="panel-header"><b>产品名称</b>：<br><span>{{$video->product->name}}</span></div>
-            <div class="panel-header"><a href="/shop/detail?id={{$video->product_id}}">查看该产品详情</a></div>
+            <!--<div class="panel-header"><a href="/shop/detail?id={{$video->product_id}}">查看该产品详情</a></div>-->
             <div class="panel-body">
             <video controls="controls"
                    src="{{$video->video_url}}"
