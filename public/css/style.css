@@ -83,6 +83,7 @@ body {
 /*****商品详情*****/
 .product-details{
     padding-bottom: 50px;
+    background: #fff;
 }
 .product-details .product-slide{
     position: relative;
@@ -115,11 +116,12 @@ body {
     color: #FF0B33;
 }
 .product-details .product-cell a{
-    padding: 10px;
     display: block;
     position: relative;
     color: #333;
     background: #fff;
+    padding: 10px 0;
+    margin: 0 10px;
 }
 .product-details .product-cell a:after{
     content: " ";
