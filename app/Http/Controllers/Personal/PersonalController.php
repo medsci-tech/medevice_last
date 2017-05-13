@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Personal;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
-use App\Models\ProductCollection;
+use App\Models\Collection;
 use App\Models\SupplierAttention;
 
 /**
@@ -44,7 +44,7 @@ class PersonalController extends Controller
     public function collectionList()
     {
         $customer = \Helper::getCustomer();
-        $collections = ProductCollection::where('customer_id', $customer->id)->get();
+        $collections = Collection::where('user_id', $customer->id)->get();
         return view('personal.collection-list', ['collections' => $collections]);
     }
 
