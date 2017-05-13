@@ -23,7 +23,7 @@
                 </div>
                 <div class="ui-list-info">
                     <a href="/shop/detail?id={{$collection->product->id}}">
-                        <h5 class="ui-nowrap">{{$collection->product->price}}</h5>
+                        <h5 class="ui-nowrap">{{$collection->product->name}}</h5>
 
                         <p class="ui-nowrap ui-txt-info">时间：{{$collection->created_at}}</p>
                     </a>
@@ -31,7 +31,7 @@
             </li>
             <li class="ui-border-t">
                 <div class="ui-list-info">
-                    <h5>价格：<span class="ui-txt-warning">待定</span></h5>
+                    <h5>价格：<span class="ui-txt-warning">{{$collection->product->price}}</span></h5>
                     {{--<h5>价格：<span class="ui-txt-warning">￥{{$collection->product->price}}</span></h5>--}}
                 </div>
                 <div class="order_pay"><h6 class="ui-list-action ui-btn ui-btn-danger"
