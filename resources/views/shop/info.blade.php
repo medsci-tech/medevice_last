@@ -20,7 +20,7 @@
     <table class="par-table">
         <tbody>
         <tr class="ui-border-b">
-            <td class="key" width="70">品品组成</td>
+            <td class="key" width="70">产品组成</td>
             <td class="value">{{ $data->attention  }}</td>
         </tr>
         <tr class="ui-border-b">
