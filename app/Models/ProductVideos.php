@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Common;
+
 /**
  * Class ProductSpecification
  * @package App\Models
  * @mixin \Eloquent
  */
-class ProductVideos extends Common
+class ProductVideos extends Model
 {
     /**
      * The database table used by the model.
