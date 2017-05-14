@@ -53,6 +53,6 @@ class Product extends Model
      */
     public function videos()
     {
-        return $this->hasMany('App\Models\ProductVideo', 'product_id');
+        return $this->hasMany('App\Models\ProductVideos', 'product_id');
     }
 }
