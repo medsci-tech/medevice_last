@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Collection;
 use App\Models\ProductCategory;
 use App\Models\ProductVideo;
+use App\Models\ProductVideos;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Cooperation;
