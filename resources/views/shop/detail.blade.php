@@ -73,7 +73,7 @@
                         @if($data_similar)
                             @foreach ($data_similar as $val)
                                 <li>
-                                    <a href="{{ url('product/detail/'.$val->id) }}" target="_blank"><img src="{{ $val->logo }}?imageView2/1/w/220/h/220/q/90" alt=""></a>
+                                    <a href="{{ url('product/detail/'.$val->id) }}"><img src="{{ $val->logo }}?imageView2/1/w/220/h/220/q/90" alt=""></a>
                                     <p class="price">零售价格：<em>{{ $val->price }}</em></p>
                                     <p class="title">{{ $val->name }}</p>
                                 </li>
