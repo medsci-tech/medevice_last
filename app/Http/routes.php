@@ -46,6 +46,17 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/order-list', 'PersonalController@orderList');
         Route::get('/collection-list', 'PersonalController@collectionList');
         Route::get('/attention-list', 'PersonalController@attentionList');
+        Route::get('/cooperation', 'PersonalController@cooperation');//我的合作
+        Route::get('/appointment', 'PersonalController@appointment');//我的预约
+        Route::get('/appointment/{id}', 'PersonalController@appointment');//我的预约
+        Route::any('/appointment-detail/{id}', 'PersonalController@appointmentDetail');//我的预约
+        Route::any('/info-edit', 'PersonalController@infoEdit');// 资料修改
+        Route::any('/pwd-edit', 'PersonalController@pwdEdit');// 密码修改
+        Route::any('/expertise', 'PersonalController@expertise');// 个人专长
+        Route::any('/enterprise', 'PersonalController@enterprise');// 企业信息
+        Route::any('/expertise', 'PersonalController@expertise');// 个人专长
+        Route::get('/message', 'PersonalController@message');//我的消息
+        Route::post('/upload-head', 'PersonalController@uploadHead');// 个人图像上传
     });
     Route::group(['prefix' => 'apply', 'namespace' => 'Apply'], function () {
         Route::any('/', 'ApplyController@index');

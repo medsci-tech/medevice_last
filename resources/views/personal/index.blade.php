@@ -10,19 +10,25 @@
 </head>
 <body>
 <div class="ui-container">
-    <ul class="ui-list ui-list-text ui-border-tb ui-top">
-        <li class="ui-border-t">
-            <h4 class="ui-nowrap">用户名</h4>
-            <div class="ui-txt-info">{{$customer->nickname}}</div>
-        </li>
-        <li class="ui-border-t">
-            <h4 class="ui-nowrap">手机号</h4>
+    {{--<ul class="ui-list ui-list-text ui-border-tb ui-top">--}}
+        {{--<li class="ui-border-t">--}}
+            {{--<h4 class="ui-nowrap">用户名</h4>--}}
+            {{--<div class="ui-txt-info">{{$customer->nickname}}</div>--}}
+        {{--</li>--}}
+        {{--<li class="ui-border-t">--}}
+            {{--<h4 class="ui-nowrap">手机号</h4>--}}
 
-            <div class="ui-txt-info">{{$customer->phone}}</div>
-        </li>
+            {{--<div class="ui-txt-info">{{$customer->phone}}</div>--}}
+        {{--</li>--}}
 
-    </ul>
-
+    {{--</ul>--}}
+    <a href="/personal/info-edit">
+        <ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">
+            <li class="ui-border-t">
+                <h4>基本信息</h4>
+            </li>
+        </ul>
+    </a>
     {{--<a href="/personal/order-list">--}}
         {{--<ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">--}}
             {{--<li class="ui-border-t">--}}
@@ -30,7 +36,27 @@
             {{--</li>--}}
         {{--</ul>--}}
     {{--</a>--}}
-
+    <a href="/personal/expertise">
+        <ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">
+            <li class="ui-border-t">
+                <h4>我的专长</h4>
+            </li>
+        </ul>
+    </a>
+    <a href="/personal/enterprise">
+        <ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">
+            <li class="ui-border-t">
+                <h4>企业认证</h4>
+            </li>
+        </ul>
+    </a>
+    <a href="/personal/message">
+        <ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">
+            <li class="ui-border-t">
+                <h4>我的消息</h4>
+            </li>
+        </ul>
+    </a>
     <a href="/personal/collection-list">
         <ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">
             <li class="ui-border-t">
@@ -38,14 +64,27 @@
             </li>
         </ul>
     </a>
-
-    {{--<a href="/personal/attention-list">--}}
-        {{--<ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">--}}
-            {{--<li class="ui-border-t">--}}
-                {{--<h4>关注厂家</h4>--}}
-            {{--</li>--}}
-        {{--</ul>--}}
-    {{--</a>--}}
+    <a href="/personal/cooperation">
+        <ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">
+            <li class="ui-border-t">
+                <h4>我的合作</h4>
+            </li>
+        </ul>
+    </a>
+    <a href="/personal/appointment">
+        <ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">
+            <li class="ui-border-t">
+                <h4>我的预约</h4>
+            </li>
+        </ul>
+    </a>
+    <a href="/personal/attention-list">
+        <ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">
+            <li class="ui-border-t">
+                <h4>关注厂家</h4>
+            </li>
+        </ul>
+    </a>
 
     {{--<ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">--}}
     {{--<li class="ui-border-t">--}}
