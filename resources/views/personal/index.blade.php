@@ -6,92 +6,60 @@
     <meta name="format-detection" content="telephone=no">
     <title>个人信息</title>
     <link rel="stylesheet" href="{{asset('/css/frozen.css')}}">
-    <link rel="stylesheet" href="{{asset('/css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/style.css')}}">
 </head>
 <body>
-<div class="ui-container">
-    {{--<ul class="ui-list ui-list-text ui-border-tb ui-top">--}}
-        {{--<li class="ui-border-t">--}}
-            {{--<h4 class="ui-nowrap">用户名</h4>--}}
-            {{--<div class="ui-txt-info">{{$customer->nickname}}</div>--}}
-        {{--</li>--}}
-        {{--<li class="ui-border-t">--}}
-            {{--<h4 class="ui-nowrap">手机号</h4>--}}
-
-            {{--<div class="ui-txt-info">{{$customer->phone}}</div>--}}
-        {{--</li>--}}
-
-    {{--</ul>--}}
-    <a href="/personal/info-edit">
-        <ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">
-            <li class="ui-border-t">
-                <h4>基本信息</h4>
-            </li>
-        </ul>
-    </a>
-    {{--<a href="/personal/order-list">--}}
-        {{--<ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">--}}
-            {{--<li class="ui-border-t">--}}
-                {{--<h4>我的订单</h4>--}}
-            {{--</li>--}}
-        {{--</ul>--}}
-    {{--</a>--}}
-    <a href="/personal/expertise">
-        <ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">
-            <li class="ui-border-t">
-                <h4>我的专长</h4>
-            </li>
-        </ul>
-    </a>
-    <a href="/personal/enterprise">
-        <ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">
-            <li class="ui-border-t">
-                <h4>企业认证</h4>
-            </li>
-        </ul>
-    </a>
-    <a href="/personal/message">
-        <ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">
-            <li class="ui-border-t">
-                <h4>我的消息</h4>
-            </li>
-        </ul>
-    </a>
-    <a href="/personal/collection-list">
-        <ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">
-            <li class="ui-border-t">
-                <h4>我的收藏</h4>
-            </li>
-        </ul>
-    </a>
-    <a href="/personal/cooperation">
-        <ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">
-            <li class="ui-border-t">
-                <h4>我的合作</h4>
-            </li>
-        </ul>
-    </a>
-    <a href="/personal/appointment">
-        <ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">
-            <li class="ui-border-t">
-                <h4>我的预约</h4>
-            </li>
-        </ul>
-    </a>
-    <a href="/personal/attention-list">
-        <ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">
-            <li class="ui-border-t">
-                <h4>关注厂家</h4>
-            </li>
-        </ul>
-    </a>
-
-    {{--<ul class="ui-list ui-list-text ui-list-link ui-border-tb ui-top">--}}
-    {{--<li class="ui-border-t">--}}
-    {{--<h4>联系客服</h4>--}}
-    {{--</li>--}}
-    {{--</ul>--}}
-</div>
-
+    <header class="head-bar">
+        <div class="bar-left">
+            <a href="javascript:history.back()" class="goback"></a>
+        </div>
+        <div class="head-title">个人中心</div>
+    </header>
+    <div class="home_card ui-form-item-link">
+        <a href="/personal/info-edit" class="">
+            <img  src="https://gss0.bdstatic.com/6LZ1dD3d1sgCo2Kml5_Y_D3/sys/portrait/item/86cdc0fbb4a8c9f1bbb0633a?t=1473298580"  class="home_card_head_img">
+            <div class="user_info_main">
+                <p class="user_info_name">利川神话</p>
+                <p class="user_info_phone">1335435346</p>
+            </div>
+        </a>
+    </div>
+    <div class="ui-form ui-border-t m-top">
+        <div class="ui-form-item ui-form-item-link ui-border-b">
+            <a href="/personal/expertise" class="ui-txt-default">
+                <p>我的专长</p>
+            </a>
+        </div>
+        <div class="ui-form-item ui-form-item-link ui-border-b">
+            <a href="/personal/enterprise" class="ui-txt-default">
+                <p>企业认证</p>
+            </a>
+        </div>
+        <div class="ui-form-item ui-form-item-link ui-list-text ui-border-b">
+            <a href="/personal/message" class="ui-txt-default">
+                <p>我的消息</p>
+            </a>
+        </div>
+        <div class="ui-form-item ui-form-item-link ui-border-b">
+            <a href="/personal/collection-list" class="ui-txt-default">
+                <p>我的收藏</p>
+            </a>
+        </div>
+        <div class="ui-form-item ui-form-item-link ui-border-b">
+            <a href="/personal/cooperation" class="ui-txt-default">
+                <p>我的合作</p>
+            </a>
+        </div>
+        <div class="ui-form-item ui-form-item-link ui-border-b">
+            <a href="/personal/attention-list" class="ui-txt-default">
+                <p>我的预约</p>
+            </a>
+        </div>
+        <div class="ui-form-item ui-form-item-link ui-border-b">
+            <a href="/personal/attention-list" class="ui-txt-default">
+                <p>关注厂家</p>
+            </a>
+        </div>
+    </div>
 </body>
 </html>

@@ -11,6 +11,9 @@ body {
 .m-top{
     margin-top: 8px;
 }
+.m-b5{
+    margin-bottom: 5px;
+}
 .m-bottom{
     margin-bottom: 8px;
 }
@@ -344,75 +347,35 @@ body {
 
 /*****个人中心*****/
 .home_card {
-    width: 100%;
-    min-width: 320px;
-    color: #fff;
-    clear: both;
+    padding: 10px;
+    display: block;
     position: relative;
-    overflow: hidden;
-    background: #fff;
-}
-.home_card .home_card_portrait {
-    float: left;
-    width: 80px;
-    margin: 0 10px;
+    background: #ffffff;
 }
 .home_card .home_card_head_img {
-    display: block;
-    overflow: hidden;
-     width: 70px;
+    display: inline-block;
+    width: 70px;
     height: 70px;
-    margin: 15px 0 15px;
-    background: #fff;
+    border-radius: 5px;
+    margin-right: 10px;
+    vertical-align: middle;
 }
 .home_card .home_card_head_img img{
     width: 100%;
 }
-.home_card .home_card_uname {
-    display: block;
-    height: 30px;
-    line-height: 30px;
-    padding-top: 16px;
+.user_info_main {
+    display: inline-block;
+    width: 70%;
+    line-height: 24px;
+    vertical-align: middle;
 }
-.home_card .home_card_uname_link {
-    color: #fff;
-    float: left;
-    max-width: 105px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+.user_info_name{
+    font-size: 16px;
     color: #333;
 }
-.home_tab{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    text-align: center;
-    background: #fff;
-}
-.home_tab .tab_item {
-    width: 100%;
-    display: block;
-    margin: 0;
-    line-height: 180%;
-    padding: 4px 0;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    position: relative;
-    -webkit-tap-highlight-color: transparent;
-}
-.home_tab .tab_item .tab_tit{
-    display: block;
-    line-height: 20px;
-    color: #333;
-}
-.home_tab .tab_item .tab_status{
-    display: block;
-    font-size: 12px;
-    line-height: 18px;
-    color: #FF0B33;
+.user_info_phone{
+    font-size: 14px;
+    color: #848587;
 }
 
 .success_box {
@@ -450,4 +413,52 @@ body {
 }
 .apply .layui-m-layercont {
     padding: 20px;
+}
+
+.nav-tab{
+    background: #fff;
+}
+.nav-tab .tab{
+    display: -webkit-box;
+}
+.nav-tab .tab .tab-item{
+    display: block;
+    background: #fff;
+    overflow: hidden;
+    box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-box-flex: 1;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    font-size: 13px;
+    text-align: center;
+}
+.nav-tab .tab .tab-item a{
+    color: #333;
+}
+.nav-tab .tab .tab-active a{
+    color: #01a4e4;
+}
+.cooperate .ui-list-img{
+    width: 80px;
+    height: 80px;
+}
+.mark-box .mark-info{
+    display: -webkit-box;
+    padding-right: 40px;
+}
+.mark-box .del{
+    width: 40px;
+    position: absolute;
+    height: 100%;
+    right: 0;
+    text-align: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
 }
