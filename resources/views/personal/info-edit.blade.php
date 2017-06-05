@@ -7,6 +7,8 @@
     <title>个人信息修改</title>
     <link rel="stylesheet" href="{{asset('/css/frozen.css')}}">
     <link rel="stylesheet" href="{{asset('/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/MultiPicker.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/DateSelector.css')}}">
 </head>
 <body>
     <header class="head-bar">
@@ -56,6 +58,7 @@
             <li class="ui-border-t">
                 <h4 class="ui-nowrap">出生日期</h4>
                 <div class="ui-txt-info">1995-3-10</div>
+                <span id="multiPickerInput"></span>
             </li>
         </div>
         <div class="ui-list ui-list-text ui-border-b ui-list-link" onclick="infoEdit(email_html,this,'email')">
@@ -68,11 +71,15 @@
             <li class="ui-border-t">
                 <h4 class="ui-nowrap">工作地址</h4>
                 <div class="ui-txt-info">湖北省-武汉市-江夏区</div>
+                <span id="addrInput"></span>
             </li>
         </div>
     </div>
     <script src="{{asset('/js/zepto.min.js')}}"></script>
     <script src="{{asset('/js/layer.js')}}"></script>
+    <script src="{{asset('/js/city.js')}}"></script>
+    <script src="{{asset('/js/DateSelector.js')}}"></script>
+    <script src="{{asset('/js/MultiPicker.js')}}"></script>
     <script>
         function postForm(url,data,myFuc) {
             $.ajax({
@@ -98,6 +105,12 @@
                 }
             });
         }
+        var name = document.getElementById('name').innerText;
+        var phone = document.getElementById('phone').innerText;
+        var data = {
+            name:name,
+            phone:phone,
+        };
         var name_html = '<div class="ui-form">'+
                             '<div class="ui-form-item ui-form-item-pure ui-border-radius ui-form">'+
                                 '<input type="text" placeholder="请输入姓名" name="name" id="real_name" value="吴越">'+
@@ -125,17 +138,11 @@
                              '</div>'+
                          '</div>'
         function infoEdit(html,el,type) {
-            var name = document.getElementById('name').innerText;
-            var phone = document.getElementById('phone').innerText;
             layer.open({
                 content: html
                 ,className:'apply'
                 ,btn: ['保存', '取消']
                 ,yes: function(index){
-                    var data = {
-                        name:name,
-                        phone:phone,
-                    };
                     switch (type){
                         case 'name':
                             var real_name = document.getElementById('real_name').value;
@@ -181,6 +188,50 @@
                 }
             });
         }
+        //地址选择器
+        new MultiPicker({
+            input: 'addrInput',//点击触发插件的input框的id
+            container: 'AddrContainer',//插件插入的容器id
+            jsonData: $city,
+            success: function (arr) {
+                console.log(arr.length)
+                if(arr.length == 1){
+                    data.province = arr[0].value;
+                    var addr = arr[0].value;
+                }else if(arr.length ==2){
+                    data.province = arr[0].value;
+                    data.city = arr[1].value;
+                    var addr = arr[0].value+'-'+arr[1].value;
+                }else{
+                    data.province = arr[0].value;
+                    data.city = arr[1].value;
+                    data.area = arr[2].value;
+                    var addr = arr[0].value+'-'+arr[1].value+'-'+arr[2].value;
+                }
+                console.log(data)
+                postForm('/personal/info-edit',data,function () {
+                    $("#addrInput").siblings(".ui-txt-info").html(addr)
+                })
+            }//回调
+        });
+        //时间选择器
+        new DateSelector({
+            input: 'multiPickerInput',//点击触发插件的input框的id
+            container: 'DateContainer',//插件插入的容器id
+            type: 0,
+            param: [1, 1, 1, 0, 0],
+            beginTime: [],
+            endTime: [],
+            recentTime: [],
+            success: function (arr) {
+                var birthday = arr[0]+'-'+arr[1]+'-'+arr[2];
+                data.birthday = birthday;
+                console.log(data)
+                postForm('/personal/info-edit',data,function () {
+                    $("#multiPickerInput").siblings(".ui-txt-info").html(birthday)
+                })
+            }//回调
+        });
     </script>
 </body>
 </html>

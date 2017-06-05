@@ -78,10 +78,13 @@ body {
 .head-bar .bar-left {
     position: absolute;
 }
-
 .head-bar .bar-right {
     position: absolute;
     right: 10px;
+    color: #fff;
+    text-align: right;
+    width: 44px;
+    height:44px;
 }
 /*****商品详情*****/
 .product-details{
@@ -461,4 +464,11 @@ body {
     align-items: center;
     -webkit-justify-content: center;
     justify-content: center;
+}
+#addrInput,#multiPickerInput{
+    position: absolute;
+    right:0;
+    left: 0;
+    bottom: 0;
+    top: 0;
 }
