@@ -17,12 +17,12 @@
         </div>
         <div class="head-title">个人中心修改</div>
     </header>
-    <div class="home_card ui-form-item-link">
-        <a href="" class="">
+    <div class="home_card ui-form-item-link" onclick="wxChooseImage()">
+        <a href="javascript:;" class="">
             <div class="user_info_main">
                 <p class="user_info_name">头像</p>
             </div>
-            <img  src="https://gss0.bdstatic.com/6LZ1dD3d1sgCo2Kml5_Y_D3/sys/portrait/item/86cdc0fbb4a8c9f1bbb0633a?t=1473298580"  class="home_card_head_img">
+            <img  src=""  class="home_card_head_img">
         </a>
     </div>
     <div class="m-top">
@@ -75,11 +75,14 @@
             </li>
         </div>
     </div>
+    <div id="AddrContainer"></div>
+    <div id="DateContainer"></div>
     <script src="{{asset('/js/zepto.min.js')}}"></script>
     <script src="{{asset('/js/layer.js')}}"></script>
     <script src="{{asset('/js/city.js')}}"></script>
     <script src="{{asset('/js/DateSelector.js')}}"></script>
     <script src="{{asset('/js/MultiPicker.js')}}"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     <script>
         function postForm(url,data,myFuc) {
             $.ajax({
@@ -137,6 +140,7 @@
                                  '<input type="text" placeholder="请输入邮箱" name="name" id="email" value="85642319@qq.com">'+
                              '</div>'+
                          '</div>'
+        //用户资料修改
         function infoEdit(html,el,type) {
             layer.open({
                 content: html
@@ -232,6 +236,38 @@
                 })
             }//回调
         });
+        //头像修改
+        wx.config({
+            debug: false,
+            appId: ,
+            timestamp: ,
+            nonceStr: ,   //生成签名的随机串
+            signature: ,  //签名
+            jsApiList: ['chooseImage', 'uploadImage',]
+        });
+        function wxChooseImage() {
+            wx.chooseImage({
+                count: 1,
+                sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+                sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+                success: function (res) {
+                    var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                    wx.uploadImage({
+                        localId: localIds, // 需要上传的图片的本地ID，由chooseImage接口获得
+                        success: function (res) {
+                            var serverId = res.serverId; // 返回图片的服务器端ID
+                            layer.open({
+                                content: "头像修改成功！"
+                                ,skin: 'msg'
+                                ,time: 2
+                            });
+                            $(".home_card_head_img").attr("src", localIds);
+                        }
+                    });
+                },
+            });
+        }
+
     </script>
 </body>
 </html>
