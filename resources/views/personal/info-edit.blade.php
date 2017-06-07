@@ -22,7 +22,7 @@
             <div class="user_info_main">
                 <p class="user_info_name">头像</p>
             </div>
-            <img  src=""  class="home_card_head_img">
+            <img  src="{{ isset($customer->head_img) ? $customer->head_img.'?imageView2/1/w/75/h/75/q/90' : $customer->head_image_url }}"  class="home_card_head_img">
         </a>
     </div>
     <div class="m-top">
@@ -31,7 +31,7 @@
                 <div class="ui-list-info">
                     <h4>昵称</h4>
                 </div>
-                <div class="ui-list-action" id="name">I'm here.</div>
+                <div class="ui-list-action" id="name">{{ $customer->nickname  }}</div>
             </li>
         </div>
         <div class="ui-list ui-list-text ui-border-b">
@@ -39,38 +39,38 @@
                 <div class="ui-list-info">
                     <h4>手机号</h4>
                 </div>
-                <div class="ui-list-action" id="phone">13387525826</div>
+                <div class="ui-list-action" id="phone">{{ $customer->phone  }}</div>
             </li>
         </div>
         <div class="ui-list ui-list-text ui-border-b ui-list-link">
             <li class="ui-border-t" onclick="infoEdit(name_html,this,'name')">
                 <h4 class="ui-nowrap">真实姓名</h4>
-                <div class="ui-txt-info">李四</div>
+                <div class="ui-txt-info">{{ $customer->real_name  }}</div>
             </li>
         </div>
         <div class="ui-list ui-list-text ui-border-b ui-list-link" onclick="infoEdit(sex_html,this,'sex')">
             <li class="ui-border-t">
                 <h4 class="ui-nowrap">性别</h4>
-                <div class="ui-txt-info">男</div>
+                <div class="ui-txt-info">{{ $customer->sex  }}</div>
             </li>
         </div>
         <div class="ui-list ui-list-text ui-border-b ui-list-link">
             <li class="ui-border-t">
                 <h4 class="ui-nowrap">出生日期</h4>
-                <div class="ui-txt-info">1995-3-10</div>
+                <div class="ui-txt-info">{{ $customer->birthday  }}</div>
                 <span id="multiPickerInput"></span>
             </li>
         </div>
         <div class="ui-list ui-list-text ui-border-b ui-list-link" onclick="infoEdit(email_html,this,'email')">
             <li class="ui-border-t">
                 <h4 class="ui-nowrap">电子邮箱</h4>
-                <div class="ui-txt-info">85642319@qq.com</div>
+                <div class="ui-txt-info">{{ $customer->email  }}</div>
             </li>
         </div>
         <div class="ui-list ui-list-text ui-border-b ui-list-link">
             <li class="ui-border-t">
                 <h4 class="ui-nowrap">工作地址</h4>
-                <div class="ui-txt-info">湖北省-武汉市-江夏区</div>
+                <div class="ui-txt-info">{{ $customer->province }}-{{ $customer->city }}-{{ $customer->area }}</div>
                 <span id="addrInput"></span>
             </li>
         </div>

@@ -17,40 +17,34 @@
     </header>
     <div class="nav-tab ui-border-b">
         <ul class="tab">
-            <li class="tab-item tab-active">
-                <a href="">全部10</a>
+            <li class="tab-item @if ($status=='') tab-active @endif">
+                <a href="{{ url('personal/appointment/') }}">全部{{ $count }}</a>
             </li>
-            <li class="tab-item">
-                <a href="">已预约2</a>
+            <li class="tab-item @if ($status==2) tab-active @endif">
+                <a href="{{ url('personal/appointment/2') }}">已预约{{ isset($count_list[2]) ? $count_list[2] : 0 }}</a>
             </li>
-            <li class="tab-item">
-                <a href="">已审核3</a>
+            <li class="tab-item @if ($status==1) tab-active @endif">
+                <a href="{{ url('personal/appointment/1') }}">已审核{{ isset($count_list[1]) ? $count_list[1] : 0 }}</a>
             </li>
-            <li class="tab-item">
-                <a href="">进行中5</a>
+            <li class="tab-item @if ($status==0) tab-active @endif">
+                <a href="{{ url('personal/appointment/0') }}">进行中{{ isset($count_list[0]) ? $count_list[0] : 0 }}</a>
             </li>
-            <li class="tab-item">
-                <a href="">已完成5</a>
+            <li class="tab-item @if ($status==3) tab-active @endif">
+                <a href="{{ url('personal/appointment/3') }}">已完成{{ isset($count_list[3]) ? $count_list[3] : 0 }}</a>
             </li>
         </ul>
     </div>
     <section class="ui-panel ui-panel-pure ui-border-t m-top">
         <ul class="ui-list ui-list-pure ui-border-tb ui-list-link ui-list-text">
+            @if($list)
+                @foreach($list as $order)
             <li class="ui-border-t">
-                <h4 class="m-b5">胰岛素笔式数显注射器</h4>
-                <p>湖北省武汉市光谷大道</p>
-                <h5><span class="date"> 2月12日</span></h5>
+                <h4 class="m-b5">{{ $order->product_name }}</h4>
+                <p>{{ $order->province.$order->city.$order->area }}</p>
+                <h5><span class="date"> {{ str_limit($order->appoint_at, $limit = 10, $end = '') }}</span></h5>
             </li>
-            <li class="ui-border-t">
-                <h4 class="m-b5">胰岛素笔式数显注射器</h4>
-                <p>湖北省武汉市光谷大道</p>
-                <h5><span class="date"> 2月12日</span></h5>
-            </li>
-            <li class="ui-border-t">
-                <h4 class="m-b5">胰岛素笔式数显注射器</h4>
-                <p>湖北省武汉市光谷大道</p>
-                <h5><span class="date"> 2月12日</span></h5>
-            </li>
+                @endforeach
+            @endif
         </ul>
     </section>
 </body>

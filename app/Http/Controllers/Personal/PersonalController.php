@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Message;
 use App\Models\Collection;
+use App\Models\Appointment;
 use App\Models\SupplierAttention;
 use Illuminate\Http\Request;
 /**
@@ -16,7 +17,7 @@ use Illuminate\Http\Request;
 class PersonalController extends Controller
 {
 
-    public function __construct1()
+    public function __construct()
     {
         $this->middleware('wechat');
         $this->middleware('access');
@@ -27,8 +28,8 @@ class PersonalController extends Controller
      */
     public function index()
     {
-        //$customer = \Helper::getCustomer();
-        $customer = Customer::find(15);
+        $customer = \Helper::getCustomer();
+        //$customer = Customer::find(15);
         return view('personal.index', ['customer' => $customer]);
     }
 
@@ -47,8 +48,8 @@ class PersonalController extends Controller
      */
     public function collectionList()
     {
-        //$customer = \Helper::getCustomer();
-        $customer = Customer::find(15);
+        $customer = \Helper::getCustomer();
+        //$customer = Customer::find(15);
         $collections = Collection::where('user_id', $customer->id)->get();
         return view('personal.collection-list', ['collections' => $collections]);
     }
@@ -87,8 +88,10 @@ class PersonalController extends Controller
             else
                 return response()->json(['code'=>200, 'status' => 0,'message' => $result['message'] ]);
         }
+        $customer = \Helper::getCustomer();
+        //$customer = Customer::find(15);
 
-        return view('personal.info-edit', ['data' => null]);
+        return view('personal.info-edit', ['customer' => $customer]);
     }
 
     /**
@@ -198,8 +201,8 @@ class PersonalController extends Controller
      */
     public function message(Request $request)
     {
-        //$customer = \Helper::getCustomer();
-        $customer = Customer::find(15);
+        $customer = \Helper::getCustomer();
+        //$customer = Customer::find(15);
         $list = Message::orderBy('created_at','desc')->where(['user_id'=>$customer->id])->orWhere(['user_id'=>0])->get();
         return view('personal.message', ['list' => $list]);
     }
@@ -212,8 +215,8 @@ class PersonalController extends Controller
      */
     public function cooperation()
     {
-        //$customer = \Helper::getCustomer();
-        $customer = Customer::find(15);
+        $customer = \Helper::getCustomer();
+        //$customer = Customer::find(15);
 
         $list = $customer->cooperationsWithProducts()->orderBy('id','desc')->get();
         return view('personal.cooperation', ['list' => $list]);
@@ -227,16 +230,17 @@ class PersonalController extends Controller
      */
     public function appointment(Request $request)
     {
-//        $user = \Auth::user();
-//        $status = $request->id;
-//        $where= ['status'=>$status,'user_id'=>$user->id];
-//        if($status===NULL)
-//            unset($where['status']);
-//
-//        $count_arr = Appointment::select(\DB::raw('count(*) as count,status'))->where(['user_id'=>$user->id])->groupBy('status')->get()->toArray();
-//        $count_list= array_column($count_arr, 'count', 'status');
-//        $count = array_sum($count_list); //总数
-//        $list = Appointment::where($where)->paginate(config('params')['paginate']);
+        $customer = \Helper::getCustomer();
+        //$customer = Customer::find(15);
+        $status = $request->id;
+        $where= ['status'=>$status,'user_id'=>$customer->id];
+        if($status===NULL)
+            unset($where['status']);
+
+        $count_arr = Appointment::select(\DB::raw('count(*) as count,status'))->where(['user_id'=>$customer->id])->groupBy('status')->get()->toArray();
+        $count_list= array_column($count_arr, 'count', 'status');
+        $count = array_sum($count_list); //总数
+        $list = Appointment::where($where)->get();
         return view('personal.appointment', compact('list','count','count_list','status'));
     }
 

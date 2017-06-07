@@ -22,10 +22,10 @@
                 @foreach($order->products as $product)
         <li class="ui-border-t">
             <div class="ui-list-img">
-                <span style="background-image:url(http://placeholder.qiniudn.com/200x200)"></span>
+                <span style="background-image:url({{ $product->logo }}?imageView2/1/w/200/h/200/q/90)"></span>
             </div>
             <div class="ui-list-info">
-                <h5 class="ui-txt-sub ui-txt-default">这是标题</h5>
+                <h5 class="ui-txt-sub ui-txt-default"><a href="/shop/detail?id={{$product->id}}" target="_blank">{{ $product->name }}</a></h5>
                 <h6 class="ui-txt-tips">合作类型：
                     @if ($order->join_type)
                         @foreach (explode(',',$order->join_type) as $val)
