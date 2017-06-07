@@ -141,7 +141,7 @@
                              '</div>'+
                          '</div>'
         //用户资料修改
-         infoEdit =function (html,el,type) {
+        function infoEdit(html,el,type) {
             layer.open({
                 content: html
                 ,className:'apply'
@@ -239,10 +239,10 @@
         //头像修改
         wx.config({
             debug: false,
-            appId: ,
-            timestamp: ,
-            nonceStr: ,   //生成签名的随机串
-            signature: ,  //签名
+            appId: 123,
+            timestamp: 231,
+            nonceStr: 421,   //生成签名的随机串
+            signature: 2131,  //签名
             jsApiList: ['chooseImage', 'uploadImage',]
         });
         function wxChooseImage() {
