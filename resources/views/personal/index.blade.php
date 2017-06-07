@@ -51,7 +51,7 @@
             </a>
         </div>
         <div class="ui-form-item ui-form-item-link ui-border-b">
-            <a href="/personal/attention-list" class="ui-txt-default">
+            <a href="/personal/appointment" class="ui-txt-default">
                 <p>我的预约</p>
             </a>
         </div>

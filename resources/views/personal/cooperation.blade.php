@@ -17,28 +17,28 @@
 </header>
 <section class="ui-panel ui-panel-pure ui-border-t cooperate">
     <ul class="ui-list ui-border-tb">
+        @if($list)
+            @foreach($list as $order)
+                @foreach($order->products as $product)
         <li class="ui-border-t">
             <div class="ui-list-img">
                 <span style="background-image:url(http://placeholder.qiniudn.com/200x200)"></span>
             </div>
             <div class="ui-list-info">
                 <h5 class="ui-txt-sub ui-txt-default">这是标题</h5>
-                <h6 class="ui-txt-tips">合作类型：代理产品</h6>
-                <h6 class="ui-txt-tips">合作时间：2015-7-25</h6>
-                <h6 class="ui-txt-tips">联系人：吴先&nbsp;1338725826</h6>
+                <h6 class="ui-txt-tips">合作类型：
+                    @if ($order->join_type)
+                        @foreach (explode(',',$order->join_type) as $val)
+                        {{ config('params')['join_type'][$val] }}
+                        @endforeach</span>
+                    @endif</h6>
+                <h6 class="ui-txt-tips">合作时间：{{ str_limit($order->created_at, $limit = 10, $end = '') }}</h6>
+                <h6 class="ui-txt-tips">联系人：{{ $order->real_name }}&nbsp;{{ $order->contact_phone }}</h6>
             </div>
         </li>
-        <li class="ui-border-t">
-            <div class="ui-list-img">
-                <span style="background-image:url(http://placeholder.qiniudn.com/200x200)"></span>
-            </div>
-            <div class="ui-list-info">
-                <h5 class="ui-txt-sub ui-txt-default">这是标题</h5>
-                <h6 class="ui-txt-tips">合作类型：代理产品</h6>
-                <h6 class="ui-txt-tips">合作时间：2015-7-25</h6>
-                <h6 class="ui-txt-tips">联系人：吴先&nbsp;1338725826</h6>
-            </div>
-        </li>
+                @endforeach
+            @endforeach
+        @endif
     </ul>
 </section>
 </body>

@@ -17,18 +17,14 @@
     </header>
     <div>
         <ul class="ui-list ui-list-pure ui-border-tb">
+            @if ($list)
+                @foreach ($list as $val)
             <li class="ui-border-t">
-                <p>2月12日</p>
-                <div class="ui-txt-default">这本书太赞了，每次看都有不一样的体会和感悟，超级喜欢！期待大结局。</div>
+                <p>{{ $val->created_at }}</p>
+                <div class="ui-txt-default">{{ $val->content }}</div>
             </li>
-            <li class="ui-border-t">
-                <p>2月12日</p>
-                <div class="ui-txt-default">这本书太赞了，每次看都有不一样的体会和感悟，超级喜欢！期待大结局。</div>
-            </li>
-            <li class="ui-border-t">
-                <p>2月12日</p>
-                <div class="ui-txt-default">这本书太赞了，每次看都有不一样的体会和感悟，超级喜欢！期待大结局。</div>
-            </li>
+                @endforeach
+            @endif
         </ul>
     </div>
 </body>

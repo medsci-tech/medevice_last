@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Personal;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Order;
+use App\Models\Message;
 use App\Models\Collection;
 use App\Models\SupplierAttention;
 use Illuminate\Http\Request;
@@ -46,7 +47,8 @@ class PersonalController extends Controller
      */
     public function collectionList()
     {
-        $customer = \Helper::getCustomer();
+        //$customer = \Helper::getCustomer();
+        $customer = Customer::find(15);
         $collections = Collection::where('user_id', $customer->id)->get();
         return view('personal.collection-list', ['collections' => $collections]);
     }
@@ -196,7 +198,10 @@ class PersonalController extends Controller
      */
     public function message(Request $request)
     {
-        return view('personal.message', ['data' => null]);
+        //$customer = \Helper::getCustomer();
+        $customer = Customer::find(15);
+        $list = Message::orderBy('created_at','desc')->where(['user_id'=>$customer->id])->orWhere(['user_id'=>0])->get();
+        return view('personal.message', ['list' => $list]);
     }
 
     /**
@@ -207,9 +212,11 @@ class PersonalController extends Controller
      */
     public function cooperation()
     {
-//        $user = \Auth::user();
-//        $list = $user->cooperationsWithProducts()->orderBy('id','desc')->paginate(config('params')['paginate']);
-        return view('personal.cooperation', ['list' => null]);
+        //$customer = \Helper::getCustomer();
+        $customer = Customer::find(15);
+
+        $list = $customer->cooperationsWithProducts()->orderBy('id','desc')->get();
+        return view('personal.cooperation', ['list' => $list]);
     }
 
     /**

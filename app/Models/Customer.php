@@ -33,4 +33,23 @@ class Customer extends Model
     {
         //return $this->belongsTo(CustomerType::class, 'type_id');
     }
+
+    /**
+     * 获取指定用户的所有合作
+     */
+    public function cooperations()
+    {
+        return $this->hasMany( \App\Models\Cooperation::class,'user_id');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function cooperationsWithProducts()
+    {
+        return $this->cooperations()->with(['products' => function ($query) {
+            $query->get();
+        }]);
+    }
+
 }
