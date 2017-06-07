@@ -141,7 +141,7 @@
                              '</div>'+
                          '</div>'
         //用户资料修改
-        function infoEdit(html,el,type) {
+         infoEdit =function (html,el,type) {
             layer.open({
                 content: html
                 ,className:'apply'
