@@ -17,7 +17,7 @@
     </header>
     <div class="home_card ui-form-item-link">
         <a href="/personal/info-edit" class="">
-            <img  src="https://gss0.bdstatic.com/6LZ1dD3d1sgCo2Kml5_Y_D3/sys/portrait/item/86cdc0fbb4a8c9f1bbb0633a?t=1473298580"  class="home_card_head_img">
+            <img  src="{{ isset($customer->head_img) ? $customer->head_img.'?imageView2/1/w/75/h/75/q/90' : $customer->head_image_url }}"  class="home_card_head_img">
             <div class="user_info_main">
                 <p class="user_info_name">利川神话</p>
                 <p class="user_info_phone">1335435346</p>
@@ -25,16 +25,16 @@
         </a>
     </div>
     <div class="ui-form ui-border-t m-top">
-        <div class="ui-form-item ui-form-item-link ui-border-b">
-            <a href="/personal/expertise" class="ui-txt-default">
-                <p>我的专长</p>
-            </a>
-        </div>
-        <div class="ui-form-item ui-form-item-link ui-border-b">
-            <a href="/personal/enterprise" class="ui-txt-default">
-                <p>企业认证</p>
-            </a>
-        </div>
+        {{--<div class="ui-form-item ui-form-item-link ui-border-b">--}}
+            {{--<a href="/personal/expertise" class="ui-txt-default">--}}
+                {{--<p>我的专长</p>--}}
+            {{--</a>--}}
+        {{--</div>--}}
+        {{--<div class="ui-form-item ui-form-item-link ui-border-b">--}}
+            {{--<a href="/personal/enterprise" class="ui-txt-default">--}}
+                {{--<p>企业认证</p>--}}
+            {{--</a>--}}
+        {{--</div>--}}
         <div class="ui-form-item ui-form-item-link ui-list-text ui-border-b">
             <a href="/personal/message" class="ui-txt-default">
                 <p>我的消息</p>

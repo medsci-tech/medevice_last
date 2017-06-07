@@ -27,7 +27,7 @@ class PersonalController extends Controller
     public function index()
     {
         //$customer = \Helper::getCustomer();
-        $customer = Customer::find(1);
+        $customer = Customer::find(15);
         return view('personal.index', ['customer' => $customer]);
     }
 
