@@ -17,7 +17,7 @@
         </div>
         <div class="head-title">个人中心修改</div>
     </header>
-    <div class="home_card ui-form-item-link" onclick="wxChooseImage()">
+    <div class="home_card ui-form-item-link" onclick="wxChooseImage1()">
         <a href="javascript:;" class="">
             <div class="user_info_main">
                 <p class="user_info_name">头像</p>
@@ -137,7 +137,7 @@
                         '</div>'
         var email_html = '<div class="ui-form">'+
                              '<div class="ui-form-item ui-form-item-pure ui-border-radius ui-form">'+
-                                 '<input type="text" placeholder="请输入邮箱" name="name" id="email" value="85642319@qq.com">'+
+                                 '<input type="text" placeholder="请输入邮箱" name="name" id="email">'+
                              '</div>'+
                          '</div>'
         //用户资料修改
