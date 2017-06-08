@@ -238,7 +238,7 @@
         });
         //头像修改
         wx.config({
-            debug: true,
+            debug: false,
             appId: 123,
             timestamp: 231,
             nonceStr: 421,   //生成签名的随机串
