@@ -47,9 +47,9 @@
             type: "POST",
             dataType: "json",
             success: function (json) {
-                if (json.code == 200) {
+                if (json.success) {
                     layer.open({
-                        content: json.message
+                        content: "取消成功！"
                         , skin: 'msg'
                         , time: 2
                     });
