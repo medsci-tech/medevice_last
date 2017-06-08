@@ -51,7 +51,7 @@
         <div class="ui-list ui-list-text ui-border-b ui-list-link" onclick="infoEdit(sex_html,this,'sex')">
             <li class="ui-border-t">
                 <h4 class="ui-nowrap">性别</h4>
-                <div class="ui-txt-info">{{ $customer->sex  }}</div>
+                <div class="ui-txt-info">{{ $customer->sex }}</div>
             </li>
         </div>
         <div class="ui-list ui-list-text ui-border-b ui-list-link">
@@ -108,15 +108,15 @@
                 }
             });
         }
-        var name = document.getElementById('name').innerText;
-        var phone = document.getElementById('phone').innerText;
+        var nickname = document.getElementById('name').innerText;
+        //var phone = document.getElementById('phone').innerText;
         var data = {
-            name:name,
-            phone:phone,
+            //nickname:nickname,
+           // phone:phone,
         };
         var name_html = '<div class="ui-form">'+
                             '<div class="ui-form-item ui-form-item-pure ui-border-radius ui-form">'+
-                                '<input type="text" placeholder="请输入姓名" name="name" id="real_name" value="吴越">'+
+                                '<input type="text" placeholder="请输入姓名" name="name" id="real_name">'+
                             '</div>'+
                         '</div>'
         var sex_html = '<div class="ui-form">'+
@@ -150,7 +150,7 @@
                     switch (type){
                         case 'name':
                             var real_name = document.getElementById('real_name').value;
-                            data.read_name = real_name;
+                            data.real_name = real_name;
                             console.log(data)
                             if (real_name.length == 0) {
                                 layer.open({
@@ -238,7 +238,7 @@
         });
         //头像修改
         wx.config({
-            debug: false,
+            debug: true,
             appId: 123,
             timestamp: 231,
             nonceStr: 421,   //生成签名的随机串

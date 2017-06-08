@@ -71,25 +71,26 @@ class PersonalController extends Controller
      */
     public function infoEdit(Request $request)
     {
+        $customer = \Helper::getCustomer();
+        //$customer = Customer::find(15);
         if ($request->isMethod('post')) {
-            $result =$this->CheckResetInfo($request->all());
-            if($result['status'] ==1)
+            $data = array_filter([
+                'real_name'=>$request->real_name,
+                'sex'=>$request->sex,
+                'email'=>$request->email,
+                'birthday'=>$request->birthday,
+                'province'=>$request->province,
+                'city'=>$request->city,
+                'area'=>$request->area
+            ]);
+            if($data)
             {
-                $user = \Auth::user();
-                $user->real_name =$request->real_name;
-                $user->province =$request->province;
-                $user->city =$request->city;
-                $user->area =$request->area;
-                $user->sex =$request->sex;
-                $user->email =$request->email;
-                $user->save();
+                $customer->update($data);
                 return response()->json(['code'=>200, 'status' => 1,'message' => '修改成功' ]);
             }
             else
-                return response()->json(['code'=>200, 'status' => 0,'message' => $result['message'] ]);
+                return response()->json(['code'=>200, 'status' => 0,'message' => '缺少参数']);
         }
-        $customer = \Helper::getCustomer();
-        //$customer = Customer::find(15);
 
         return view('personal.info-edit', ['customer' => $customer]);
     }
