@@ -60,6 +60,7 @@ class RegisterController extends Controller
             $customer->openid = $user['openid'];
             $customer->password = bcrypt($request->input('password'));
             $customer->nickname = $user['nickname'];
+            $customer->sex = $user['sex'];
             $customer->head_image_url = $user['headimgurl'];
             $customer->save();
             return response()->json(['code'=>200, 'status' => 1,'message' =>'注册成功!' ]);
