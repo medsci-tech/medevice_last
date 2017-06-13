@@ -54,7 +54,7 @@ class RegisterController extends Controller
 
             $user = \Helper::getUser();
 
-            $customer = new $user();
+            $customer = new Customer();
             $customer->name = $request->input('name');
             $customer->phone = $request->input('phone');
             $customer->openid = $user['openid'];
