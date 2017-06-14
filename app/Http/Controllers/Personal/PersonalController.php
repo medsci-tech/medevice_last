@@ -10,6 +10,7 @@ use App\Models\Collection;
 use App\Models\Appointment;
 use App\Models\SupplierAttention;
 use Illuminate\Http\Request;
+use Overtrue\Wechat\Js;
 /**
  * Class PersonalController
  * @package App\Http\Controllers\Personal
@@ -91,8 +92,10 @@ class PersonalController extends Controller
             else
                 return response()->json(['code'=>200, 'status' => 0,'message' => '缺少参数']);
         }
-
-        return view('personal.info-edit', ['customer' => $customer]);
+        $appId = env('WX_APPID');
+        $secret = env('WX_SECRET');
+        $js = new Js($appId, $secret);
+        return view('personal.info-edit', ['customer' => $customer,'js' => $js]);
     }
 
     /**

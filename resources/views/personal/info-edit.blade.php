@@ -237,14 +237,15 @@
             }//回调
         });
         //头像修改
-        wx.config({
-            debug: false,
-            appId: 123,
-            timestamp: 231,
-            nonceStr: 421,   //生成签名的随机串
-            signature: 2131,  //签名
-            jsApiList: ['chooseImage', 'uploadImage',]
-        });
+        wx.config(<?php echo $js->config(array('checkJsApi','chooseImage','uploadImage'), false, false) ?>);
+//        wx.config({
+//            debug: true,
+//            appId: 123,
+//            timestamp: 231,
+//            nonceStr: 421,   //生成签名的随机串
+//            signature: 2131,  //签名
+//            jsApiList: ['chooseImage', 'uploadImage',]
+//        });
         function wxChooseImage() {
             wx.chooseImage({
                 count: 1,
