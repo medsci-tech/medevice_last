@@ -257,12 +257,17 @@ class PersonalController extends Controller
      */
     public function upload(Request $request)
     {
+        $appId = env('WX_APPID');
+        $secret = env('WX_SECRET');
+
         $serverId = $request->serverId;
         $localIds= $request->localIds;
-        $result = json_encode(['serverId'=>$serverId,'localIds'=>$localIds]);
-        \Log::info($result);
-        $tocken = new AccessToken();
+
+        $tocken = new AccessToken($appId,$secret);
         $access_token =$tocken->getToken();
+        $result = json_encode(['serverId'=>$serverId,'localIds'=>$localIds,'access_token'=>$access_token]);
+        \Log::info($result);
+
         $this->downlodimg($access_token,$serverId);
     }
 
