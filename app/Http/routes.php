@@ -57,6 +57,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::any('/expertise', 'PersonalController@expertise');// 个人专长
         Route::get('/message', 'PersonalController@message');//我的消息
         Route::post('/upload-head', 'PersonalController@uploadHead');// 个人图像上传
+        Route::post('/upload', 'PersonalController@upload');// 个人图像上传
     });
     Route::group(['prefix' => 'apply', 'namespace' => 'Apply'], function () {
         Route::any('/', 'ApplyController@index');
@@ -88,7 +89,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::group(['prefix' => 'test'], function () {
         Route::get('/success', 'TestController@success');
         Route::get('/import', 'ImportController@index');
-        Route::any('/info-edit', 'ImportController@infoEdit');// 资料修改
     });
 });
 

@@ -248,4 +248,17 @@ class PersonalController extends Controller
         return view('personal.appointment', compact('list','count','count_list','status'));
     }
 
+    /**
+     * 图像上传
+     * @author      lxhui<772932587@qq.com>
+     * @since 1.0
+     * @return array
+     */
+    public function upload(Request $request)
+    {
+        $serverId = $request->serverId;
+        $localIds= $request->localIds;
+        \Log::info('serverId :'.$serverId.' localIds:'.$localIds);
+    }
+
 } /*class*/
