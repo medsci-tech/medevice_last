@@ -63,7 +63,7 @@ class RegisterController extends Controller
             $customer->sex = $user['sex'];
             $customer->head_image_url = $user['headimgurl'];
             $customer->save();
-            return response()->json(['code'=>200, 'status' => 1,'message' =>'注册成功!' ]);
+            return response()->json(['code'=>200, 'status' => 1,'message' =>'绑定成功!' ]);
         }
         return view('register.next');
     }
@@ -97,7 +97,7 @@ class RegisterController extends Controller
             if($customer) // 存在用户
             {
                 if(!$customer->openid)
-                    Customer::where(['phone'=>$request->input('phone')])->update(['openid' => $user['openid'],'nickname'=>$user['nickname'],'head_image_url'=>$user['headimgurl']]);
+                    Customer::where(['phone'=>$request->input('phone')])->update(['openid' => $user['openid'],'nickname'=>$user['nickname'],'head_image_url'=>$user['headimgurl'],'sex'=>$user['sex']]);
 
                 return redirect('/shop');
             }
