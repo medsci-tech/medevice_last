@@ -11,6 +11,7 @@ use App\Models\Appointment;
 use App\Models\SupplierAttention;
 use Illuminate\Http\Request;
 use Overtrue\Wechat\Js;
+use Overtrue\Wechat\AccessToken;
 /**
  * Class PersonalController
  * @package App\Http\Controllers\Personal
@@ -260,6 +261,24 @@ class PersonalController extends Controller
         $localIds= $request->localIds;
         $result = json_encode(['serverId'=>$serverId,'localIds'=>$localIds]);
         \Log::info($result);
+        $tocken = new AccessToken();
+        $access_token =$tocken->getToken();
+        $this->downlodimg($access_token,$serverId);
+    }
+
+    /*下载图片*/
+    public function downlodimg($access_token,$serverId){
+        $targetName='/upload/'.rand(1,100).date('YmdHis').'.jpg';
+        $url="http://file.api.weixin.qq.com/cgi-bin/media/get?access_token={$access_token}&media_id={$serverId}";
+        $ch=curl_init($url);
+        file_put_contents('urlres.log', $url);
+        $fp=fopen($targetName, 'wb');
+        curl_setopt($ch, CURLOPT_FILE, $fp);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_exec($ch);
+        curl_close($ch);
+        fclose($fp);
+        return  $targetName;
     }
 
 } /*class*/
