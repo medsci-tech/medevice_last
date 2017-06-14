@@ -88,6 +88,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::group(['prefix' => 'test'], function () {
         Route::get('/success', 'TestController@success');
         Route::get('/import', 'ImportController@index');
+        Route::any('/info-edit', 'ImportController@infoEdit');// 资料修改
     });
 });
 
