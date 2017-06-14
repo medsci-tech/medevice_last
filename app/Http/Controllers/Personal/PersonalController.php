@@ -258,7 +258,8 @@ class PersonalController extends Controller
     {
         $serverId = $request->serverId;
         $localIds= $request->localIds;
-        \Log::info('serverId :'.$serverId.' localIds:'.$localIds);
+        $result = json_encode(['serverId'=>$serverId,'localIds'=>$localIds]);
+        \Log::info($result);
     }
 
 } /*class*/
