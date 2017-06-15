@@ -237,7 +237,7 @@
         }//回调
     });
     //头像修改
-    wx.config(<?php echo $js->config(array('checkJsApi','chooseImage','uploadImage'), true, false) ?>);
+    wx.config(<?php echo $js->config(array('checkJsApi','chooseImage','uploadImage'), false, false) ?>);
 
     function wxChooseImage() {
         wx.chooseImage({
