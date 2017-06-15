@@ -257,6 +257,7 @@ class PersonalController extends Controller
      */
     public function upload(Request $request)
     {
+        $customer = \Helper::getCustomer();
         $appId = env('WX_APPID');
         $secret = env('WX_SECRET');
 
@@ -266,17 +267,20 @@ class PersonalController extends Controller
         $tocken = new AccessToken($appId,$secret);
         $access_token =$tocken->getToken();
         $result = json_encode(['serverId'=>$serverId,'localIds'=>$localIds,'access_token'=>$access_token]);
-        \Log::info($result);
 
-        $this->downlodimg($access_token,$serverId);
+        $res = $this->downlodimg($access_token,$serverId);
+        /* 同步到七牛云 */
+        $post = ['uid'=>$customer->id,'file'=>'http://'.$_SERVER['SERVER_NAME'].substr($res,1)];
+        $result = $this->tocurl('http://www.bestmedevice.com/api/user-head',$post,1);
+        \Log::info(json_encode(['serverId'=>$serverId,'localIds'=>$localIds,'access_token'=>$access_token,'res'=>$_SERVER['SERVER_NAME'].$res,'post'=>$post,'result'=>$result]));
     }
 
     /*下载图片*/
     public function downlodimg($access_token,$serverId){
-        $targetName='/upload/'.rand(1,100).date('YmdHis').'.jpg';
+
+        $targetName='./upload/'.uniqid().date('YmdHis').'.jpg';
         $url="http://file.api.weixin.qq.com/cgi-bin/media/get?access_token={$access_token}&media_id={$serverId}";
         $ch=curl_init($url);
-        file_put_contents('urlres.log', $url);
         $fp=fopen($targetName, 'wb');
         curl_setopt($ch, CURLOPT_FILE, $fp);
         curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -284,6 +288,53 @@ class PersonalController extends Controller
         curl_close($ch);
         fclose($fp);
         return  $targetName;
+    }
+
+
+    /**
+     * 发送数据
+     * @param String $url     请求的地址
+     * @param int  $method 1：POST提交，0：get
+     * @param Array  $data POST的数据
+     * @return String
+     * @author  lxhui
+     */
+    public static function tocurl($url, $data,$method =0){
+        $headers = array(
+            "Content-type: application/json;charset='utf-8'",
+            "Authorization: Bearer " . env('MD_USER_API_TOKEN'),
+            "Accept: application/json",
+            "Cache-Control: no-cache","Pragma: no-cache",
+        );
+        try {
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 60); //设置超时
+            if(0 === strpos(strtolower($url), 'https')) {
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0); //对认证证书来源的检查
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0); //从证书中检查SSL加密算法是否存在
+            }
+            //设置选项，包括URL
+            if($method) // post提交
+            {
+                curl_setopt($ch, CURLOPT_POST,  True);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+            }
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            //执行并获取HTML文档内容
+            $output = curl_exec($ch);
+            $httpCode = curl_getinfo($ch,CURLINFO_HTTP_CODE);
+            //释放curl句柄
+            curl_close($ch);
+            $response =json_decode($output,true);
+            $response['httpCode'] = $httpCode;
+        }
+        catch (\Exception $e){
+            $response = ['httpCode'=>500];
+        }
+        return $response;
     }
 
 } /*class*/
