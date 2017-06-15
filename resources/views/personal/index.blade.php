@@ -17,7 +17,7 @@
     </header>
     <div class="home_card ui-form-item-link">
         <a href="/personal/info-edit" class="">
-            <img  src="{{ isset($customer->head_img) ? $customer->head_img.'?imageView2/1/w/75/h/75/q/90' : $customer->head_image_url }}"  class="home_card_head_img">
+            <img  src="{{ $customer->head_img ? $customer->head_img.'?imageView2/1/w/75/h/75/q/90' : $customer->head_image_url }}"  class="home_card_head_img">
             <div class="user_info_main">
                 <p class="user_info_name">{{ $customer->name }}</p>
                 <p class="user_info_phone">{{ $customer->phone }}</p>
