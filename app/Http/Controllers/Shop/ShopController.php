@@ -33,7 +33,9 @@ class ShopController extends Controller
     public function index()
     {
         $categories = ProductCategory::all();
-        $products = Product::where('category_id', $categories[0]->id)->get();
+
+        //$products = Product::where('category_id', $categories[0]->id)->get();
+        $products = Product::get();
         return view('shop.index', ['categories' => $categories, 'products' => $products]);
     }
 
