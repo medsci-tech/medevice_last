@@ -26,7 +26,7 @@
 <div>
     <div class="lfloat ui-col ui-col-25">
         <ul id="nav" style="overflow-y: hidden">
-            <li class="aa" id="0" >所有</li>
+            <li class="aa" id="0" name="all">所有</li>
             @foreach($categories as $key=>  $cat)
                 <li class="aa" id="{{ $cat->id  }}" >{{$cat->name}}</li>
             @endforeach
@@ -63,6 +63,10 @@
 </div>
 <script src="http://cdn.bootcss.com/bootswatch/2.0.2/js/jquery.js"></script>
 <script type="text/javascript" language="javascript">
+    $(function(){
+        $("li[name='all']").trigger("click");
+    });
+
     $("li.aa").click(function(){
         var _this =$(this);
         var id = $(_this).attr('id');
